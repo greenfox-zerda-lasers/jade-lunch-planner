@@ -22120,7 +22120,11 @@
 	
 	
 	// module
+<<<<<<< HEAD
+	exports.push([module.id, "body {\n  display: flex;\n  height: 100vh;\n  background: yellow;\n}\n", ""]);
+=======
 	exports.push([module.id, "body {\n  font: 100% Helvetica, sans-serif;\n  color: #CF649A; }\n", ""]);
+>>>>>>> 75369ba451cb0bbc08860ed3db294cc782443659
 	
 	// exports
 
