@@ -22042,7 +22042,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(/*! ./AppTest.css */ 179);
+	__webpack_require__(/*! ./test.scss */ 179);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22051,6 +22051,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import './AppTest.css';
+	
 	
 	var App = function (_Component) {
 	  _inherits(App, _Component);
@@ -22079,15 +22081,15 @@
 
 /***/ },
 /* 179 */
-/*!*****************************!*\
-  !*** ./src/app/AppTest.css ***!
-  \*****************************/
+/*!***************************!*\
+  !*** ./src/app/test.scss ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./AppTest.css */ 180);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/sass-loader!./test.scss */ 180);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 182)(content, {});
@@ -22096,8 +22098,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./AppTest.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./AppTest.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./test.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./test.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -22108,9 +22110,9 @@
 
 /***/ },
 /* 180 */
-/*!********************************************!*\
-  !*** ./~/css-loader!./src/app/AppTest.css ***!
-  \********************************************/
+/*!**********************************************************!*\
+  !*** ./~/css-loader!./~/sass-loader!./src/app/test.scss ***!
+  \**********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 181)();
@@ -22118,7 +22120,11 @@
 	
 	
 	// module
+<<<<<<< HEAD
 	exports.push([module.id, "body {\n  display: flex;\n  height: 100vh;\n  background: yellow;\n}\n", ""]);
+=======
+	exports.push([module.id, "body {\n  font: 100% Helvetica, sans-serif;\n  color: #CF649A; }\n", ""]);
+>>>>>>> 75369ba451cb0bbc08860ed3db294cc782443659
 	
 	// exports
 
