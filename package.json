@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build",
-    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --port 3500"
+    "build": "webpack -d && webpack-dev-server --content-base local/ --inline --hot --port 5000"
   },
   "repository": {
     "type": "git",
