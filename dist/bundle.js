@@ -22118,7 +22118,7 @@
 	
 	
 	// module
-	exports.push([module.id, "body {\r\n  display: flex;\r\n  height: 100vh;\r\n  background: yellow;\r\n}\r\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  height: 100vh;\n  background: yellow;\n}\n", ""]);
 	
 	// exports
 
