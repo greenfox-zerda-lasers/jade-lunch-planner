@@ -8,8 +8,10 @@ The app can have some kind of admin interface for managing restaurant data, and 
 
 
 
+
+
 ![Codeship Status](https://codeship.com/projects/YOUR_PROJECT_UUID/status?branch=master)
 
-![Slack](https://api.slack.com/)
+![Slack]
 
-![Google Maps](https://developers.google.com/places/web-service/details)
+![Google Maps]
