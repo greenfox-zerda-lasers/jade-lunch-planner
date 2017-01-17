@@ -10,9 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build",
     "build": "webpack -d && webpack-dev-server --content-base public/ --inline --hot --port 5000",
-    "run": "npm run heroku-prebuild && heroku-postbuild",
-    "heroku-prebuild": "node server/server.js",
-    "heroku-postbuild": "webpack -d --content-base public/ --inline --hot"
+    "run": "node server/server.js",
+    "heroku-postbuild": "webpack -p"
   },
   "repository": {
     "type": "git",
