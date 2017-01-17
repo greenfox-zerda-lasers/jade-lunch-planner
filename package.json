@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build",
-    "build": "webpack -d && webpack-dev-server --content-base public/ --inline --hot --port 5000"
+    "build": "webpack -d && webpack-dev-server --content-base public/ --inline --hot --port 5000",
+    "run": "npm heroku-prebuild && heroku-postbuild",
+    "heroku-prebuild": "node server/server.js",
+    "heroku-postbuild": "webpack --content-base public/"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
   "license": "ISC",
   "dependencies": {
     "cool-ascii-faces": "1.3.4",
+    "express": "^4.14.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
