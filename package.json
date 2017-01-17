@@ -9,7 +9,7 @@
     "build": "webpack -d && webpack-dev-server --content-base public/ --inline --hot --port 5000",
     "run": "npm heroku-prebuild && heroku-postbuild",
     "heroku-prebuild": "node server/server.js",
-    "heroku-postbuild": "webpack --content-base public/"
+    "heroku-postbuild": "webpack -d --content-base public/ --inline --hot"
   },
   "repository": {
     "type": "git",
