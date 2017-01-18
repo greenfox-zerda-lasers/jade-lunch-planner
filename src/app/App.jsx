@@ -4,7 +4,12 @@ import './test.scss';
 
 class App extends Component {
   render() {
-    return <h1>Hello World!</h1>;
+    return (
+        <article>
+          <h1>Hello World!</h1>;
+          <section></section>
+        </article>
+    )
   }
 }
 
