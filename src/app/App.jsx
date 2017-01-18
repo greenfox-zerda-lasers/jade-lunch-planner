@@ -7,6 +7,7 @@ class App extends Component {
     return (
         <article>
           <h1>Hello World!</h1>;
+          <section></section>
         </article>
     )
   }
