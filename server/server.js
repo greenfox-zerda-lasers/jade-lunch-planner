@@ -15,9 +15,12 @@ app.listen(port, () => {
   }
 });
 
+// console.log(pg);
+
+console.log(process.env.HEROKU_POSTGRESQL_DBNAME_URL);
+
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function (err, client, done) {
-    console.log(`client- ${client}, err: ${err}, done:${done}`);
     client.query('SELECT * FROM test_table', (err, result) => {
       done();
       if (err)
@@ -27,3 +30,5 @@ app.get('/db', function (request, response) {
     });
   });
 });
+
+console.log(process.env.DATABASE_URL);
