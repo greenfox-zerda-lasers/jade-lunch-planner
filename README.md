@@ -13,8 +13,6 @@ The app can have some kind of admin interface for managing restaurant data, and 
 
 Check our Project on [Heroku](https://lasers-jade-lunch-planner.herokuapp.com/)!
 
-<br />
-<br />
 
 ## Team
 
