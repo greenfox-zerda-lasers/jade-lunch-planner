@@ -8,12 +8,12 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['', '.js', '.jsx'],
   },
   module: {
     loaders: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx?)$/,
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
         query: {
