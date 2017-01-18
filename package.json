@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "build": "webpack -d && webpack-dev-server --content-base public/ --inline --hot --port 5000",
+    "build": "webpack -d && webpack-dev-server --content-base public/ --inline --hot --port 8080",
     "heroku-postbuild": "webpack -p"
   },
   "repository": {
