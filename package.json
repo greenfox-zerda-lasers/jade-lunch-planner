@@ -2,7 +2,7 @@
   "name": "jade-lunch-planner",
   "version": "1.0.0",
   "description": "lunch planner using react with slack integration",
-  "main": "index.js",
+  "main": "index.jsx",
   "engines": {
     "node": "6.9.1"
   },
