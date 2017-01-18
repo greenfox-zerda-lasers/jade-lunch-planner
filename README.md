@@ -10,7 +10,7 @@ The app can have some kind of admin interface for managing restaurant data, and 
 
 
 
-![Codeship Status](https://codeship.com/projects/YOUR_PROJECT_UUID/status?branch=master)
+![Codeship Status](https://codeship.com/projects/196291/status?branch=master)
 
 ![Slack]
 
