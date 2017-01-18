@@ -57,7 +57,6 @@
     "jasmine": "^2.5.3",
     "jasmine-enzyme": "^2.1.0",
     "react-addons-test-utils": "^15.4.2",
-    "jest": "^18.1.0",
     "webpack-dev-server": "^1.16.2"
   },
   "bugs": {
