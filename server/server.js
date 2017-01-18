@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-var pg = require('pg');
+const pg = require('pg');
 
 const port = process.env.PORT || 8080;
 
