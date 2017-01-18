@@ -7,7 +7,7 @@
     "node": "6.9.1"
   },
   "scripts": {
-    "test": "ava '**/*.test.js'",
+    "test": "ava **/*.test.js",
     "start": "node server/server.js",
     "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 8000",
     "heroku-postbuild": "webpack -p"
@@ -41,11 +41,14 @@
     "webpack": "^1.14.0"
   },
   "devDependencies": {
+    "enzyme": "^2.7.0",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
+    "jasmine-enzyme": "^2.1.0",
+    "react-addons-test-utils": "^15.4.2",
     "webpack-dev-server": "^1.16.2"
   },
   "bugs": {

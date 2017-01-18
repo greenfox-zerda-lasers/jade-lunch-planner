@@ -1,5 +1,5 @@
 import test from 'ava';
-import './server';
+import '../server/server';
 
 
 test('first passing test', (t) => {
