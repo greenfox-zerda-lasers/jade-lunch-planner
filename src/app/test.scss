@@ -6,10 +6,13 @@ $primary-color: #FFFFFF;
 
 body {
   background-color: #292931;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .input-wrapper {
-  margin: 0 auto;
   background-color: white;
   width: 50vw;
   display: flex;
@@ -35,7 +38,7 @@ body {
   }
 
   img {
-    width: 10vw;
+    width: 11vw;
     height: 12vh;
   }
 
