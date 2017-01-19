@@ -25,6 +25,11 @@ module.exports = {
         loader: 'style-loader!css-loader',
       },
       {
+        test: /\.png$/,
+        loader: 'url-loader',
+        query: { mimetype: 'image/png' }
+      },
+      {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
