@@ -25,22 +25,22 @@ class App extends Component {
         'Content-Type': 'application/json',
       }),
       body: value,
-    })
+    });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
+        <label htmlFor="search">
           Restaurant:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input id="search" type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <div>
           <input type="submit" value="Send" />
         </div>
       </form>
     );
-  };
+  }
 }
 
 export default App;
