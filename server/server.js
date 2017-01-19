@@ -3,14 +3,14 @@ const express = require('express');
 const pg = require('pg');
 
 const app = express();
-// const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
+const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
 // const client = new pg.Client(connectionString);
 
 const config = {
-  user: 'ignoc', // env var: PGUSER
-  database: 'dvdrental', // env var: PGDATABASE
-  password: 'admin', // env var: PGPASSWORD
-  host: 'localhost', // Server hosting the postgres database
+  user: process.env.PGUSER, // env var: PGUSER
+  database: process.env.DATABASE_URL, // env var: PGDATABASE
+  password: process.env.PGPASSWORD, // env var: PGPASSWORD
+  host: connectionString, // Server hosting the postgres database
 };
 
 const pool = new pg.Pool(config);
@@ -44,7 +44,7 @@ app.get('/add', (request, response, next) => {
       return response.status(500).json({ succes: false, data: err });
     }
     // data insertiom
-    client.query('INSERT INTO test(text, id) VALUES($1, $2)',['put something here', 123], (error, rows) => {
+    client.query('INSERT INTO test(text, id) VALUES($1, $2)', ['put something here', 123], (error, rows) => {
       console.log(error
       );
       console.log(rows);
