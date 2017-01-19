@@ -19,7 +19,7 @@ class App extends Component {
     event.preventDefault();
   }
   sendData(value) {
-    return fetch(`/db`, {
+    return fetch('/add', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

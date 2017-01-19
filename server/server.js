@@ -22,7 +22,7 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/db', (request, response) => {
   pool.connect((err, client) => {
-    client.query('SELECT * FROM test_table', (error, result) => {
+    client.query('SELECT * FROM test', (error, result) => {
       console.log(error);
       console.log(result);
       if (error) {
@@ -44,7 +44,7 @@ app.post('/add', (request, response, next) => {
       return response.status(500).json({ succes: false, data: err });
     }
     // data insertiom
-    client.query('INSERT INTO test_table(text) VALUES($1)', [request.body.text], (error, rows) => {
+    client.query('INSERT INTO test_table(text, id) VALUES($1)', [request.body.text, 122], (error, rows) => {
       console.log(rows);
       if (error) {
         throw error;
