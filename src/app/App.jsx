@@ -14,17 +14,18 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    this.sendData(this.state.value);
+    this.sendData(this.state);
     console.log(`Looking for a restaurant nearby called ${this.state.value}`);
     event.preventDefault();
   }
-  sendData(value) {
+  sendData(values) {
+    const data = (values) ? JSON.stringify(values) : null;
     return fetch('/add', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
-      body: value,
+      body: data,
     });
   }
 

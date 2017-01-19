@@ -7,7 +7,7 @@ const app = express();
 const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
 const client = new pg.Client(connectionString);
 
-app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 
@@ -20,9 +20,11 @@ const config = {
 
 const port = process.env.PORT || 8080;
 const pool = new pg.Pool(config);
+pool.connect();
 
 
 app.get('/db', (req, res) => {
+  console.log(req.body);
   client.query('SELECT * FROM test', (error, result) => {
     if (error) {
       res.send(`Err: ${error}`);
@@ -33,9 +35,7 @@ app.get('/db', (req, res) => {
 
 
 app.post('/add', (req, res) => {
-  console.log('koszi levi');
-  client.query(`INSERT INTO test_table(text, id) VALUES(${req.body.text}, ${23})`, (error, rows) => {
-    console.log(rows);
+  client.query(`INSERT INTO test_table(text) VALUES(${req.body.text})`, (error, rows) => {
     if (error) {
       throw error;
     }
@@ -46,8 +46,6 @@ app.post('/add', (req, res) => {
 
 app.listen(port, () => {
   if (port === 8080) {
-    console.log(`A66 Lunch Planner is running on http://localhost: ${port}`);
-  } else {
-    console.log(`A66 Lunch Planner is running on PORT: ${port}`);
+    console.log(`A66 Lunch Planner is running on http://localhost:${port}`);
   }
 });
