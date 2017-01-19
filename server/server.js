@@ -16,14 +16,13 @@ const config = {
 };
 
 const pool = new pg.Pool(config);
-
 const port = process.env.PORT || 8080;
 
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/db', (request, response) => {
   pool.connect((err, client) => {
-    client.query('SELECT * FROM test', (error, result) => {
+    client.query('SELECT * FROM test_table', (error, result) => {
       console.log(error);
       console.log(result);
       if (error) {
@@ -35,7 +34,7 @@ app.get('/db', (request, response) => {
   });
 });
 
-app.get('/add', (request, response, next) => {
+app.post('/add', (request, response, next) => {
   // const results = [];
   // later grab data from html endpoints
   // const data = { place: request.body.text, going: true}; // TODO: refaktor after endpoints
