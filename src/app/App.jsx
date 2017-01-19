@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './foodlogo.png';
+import backgImg from './openbckg.png';
 import './test.scss';
 
 
@@ -40,7 +41,7 @@ class App extends Component {
             Restaurant:
             <input id="search" type="text" value={this.state.value} onChange={this.handleChange} />
           </label>
-          <div>
+          <div className="button-wrapper">
             <input type="submit" value="Send" />
           </div>
         </form>

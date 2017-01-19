@@ -27,7 +27,7 @@ module.exports = {
       {
         test: /\.png$/,
         loader: 'url-loader',
-        query: { mimetype: 'image/png' }
+        query: { mimetype: 'image/png' },
       },
       {
         test: /\.scss$/,
