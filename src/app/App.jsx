@@ -16,10 +16,20 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    console.log(event);
+    this.sendData(this.state.value);
     console.log(`Looking for a restaurant nearby called ${this.state.value}`);
     event.preventDefault();
   }
+  sendData(value) {
+    return fetch(`/db`, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: value,
+    })
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
