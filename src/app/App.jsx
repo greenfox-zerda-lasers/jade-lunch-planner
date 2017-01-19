@@ -19,6 +19,7 @@ class App extends Component {
     event.preventDefault();
   }
   sendData(value) {
+    console.log(typeof value);
     return fetch(`/db`, {
       method: 'POST',
       headers: new Headers({
