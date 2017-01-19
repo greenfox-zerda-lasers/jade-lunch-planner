@@ -1,9 +1,11 @@
 const path = require('path');
 const express = require('express');
 const pg = require('pg');
+const bodyParser = require('body-parser');
 
 const app = express();
 const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
+app.use(bodyParser.json({ type: 'application/*+json' }));
 // const client = new pg.Client(connectionString);
 
 const config = {
@@ -40,13 +42,10 @@ app.get('/add', (request, response, next) => {
 
   pool.connect((err, client) => {
     if (err) {
-      console.log(err);
       return response.status(500).json({ succes: false, data: err });
     }
     // data insertiom
-    client.query('INSERT INTO test(text, id) VALUES($1, $2)', ['put something here', 123], (error, rows) => {
-      console.log(error
-      );
+    client.query('INSERT INTO test_table(text) VALUES($1)', [request.body.text], (error, rows) => {
       console.log(rows);
       if (error) {
         throw error;
