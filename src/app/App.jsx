@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Restaurants from '../components/Restaurants';
-
 import './test.scss';
 
 
@@ -42,7 +40,7 @@ class App extends Component {
         </div>
       </form>
     );
-  }
+  };
 }
 
 export default App;
