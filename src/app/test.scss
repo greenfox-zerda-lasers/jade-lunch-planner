@@ -5,16 +5,49 @@ $primary-font:    Nunito;
 $primary-color: #FFFFFF;
 
 body {
-  background-color: #A169D2;
+  background-color: #292931;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-h1 {
-  font-family: Pacifico;
-  font-size: 30px;
-  color: #FEDB26;
-}
+.input-wrapper {
+  background-color: white;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding-bottom: 10px;
 
-p, a {
-  font-family: $primary-font;
-  color: $primary-color;
+  h1 {
+    font-family: Pacifico;
+    font-size: 30px;
+    color: #FEDB26;
+  }
+
+  p, a {
+    font-family: $primary-font;
+    color: $primary-color;
+  }
+
+  .App-logo-spin {
+    animation: App-logo-spin infinite 20s linear;
+    margin: 20px;
+  }
+
+  img {
+    width: 100px;
+    height: 80px;
+  }
+
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+  }
+
+  .button-wrapper {
+    margin-top: 10px;
+  }
 }
