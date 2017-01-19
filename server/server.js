@@ -20,9 +20,10 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/db', (request, response) => {
-  pool.connect((err, client, done) => {
+  pool.connect((err, client) => {
     client.query('SELECT * FROM test', (error, result) => {
-      done();
+      console.log(error);
+      console.log(result);
       if (error) {
         console.error(error);
         response.send(`Err: ${error}`);
@@ -32,24 +33,21 @@ app.get('/db', (request, response) => {
   });
 });
 
-app.post('/add', (request, response, next) => {
+app.get('/add', (request, response, next) => {
   // const results = [];
   // later grab data from html endpoints
   // const data = { place: request.body.text, going: true}; // TODO: refaktor after endpoints
 
-  pool.connect((err, client, done) => {
+  pool.connect((err, client) => {
     if (err) {
-      done();
       console.log(err);
       return response.status(500).json({ succes: false, data: err });
     }
     // data insertiom
-    client.query({
-      sql: 'INSERT INTO test(text, id) VALUES($1, $2)',
-      values: ['put something here', 'test db '],
-    }, (error, rows) => {
+    client.query('INSERT INTO test(text, id) VALUES($1, $2)',['put something here', 123], (error, rows) => {
+      console.log(error
+      );
       console.log(rows);
-      done();
       if (error) {
         throw error;
       }
