@@ -30,15 +30,17 @@ class App extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="search">
-          Restaurant:
-          <input id="search" type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <div>
-          <input type="submit" value="Send" />
-        </div>
-      </form>
+      <article>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="search">
+            Restaurant:
+            <input id="search" type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <div>
+            <input type="submit" value="Send" />
+          </div>
+        </form>
+      </article>
     );
   }
 }
