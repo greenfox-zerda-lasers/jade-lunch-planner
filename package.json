@@ -7,7 +7,8 @@
     "node": "6.9.1"
   },
   "scripts": {
-    "test": "ava **/*.test.js",
+    "test": "npm run jasmine && ava **/*.test.js",
+    "jasmine": "node node_modules/jasmine/bin/jasmine.js",
     "start": "node server/server.js",
     "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 8000",
     "heroku-postbuild": "webpack -p"
@@ -19,9 +20,14 @@
   "keywords": [
     "a66",
     "lunch",
+    "javascript",
     "react",
+    "flux",
     "slack",
-    "google"
+    "google",
+    "jasmine",
+    "enzyme",
+    "testing"
   ],
   "author": "team-jade",
   "license": "ISC",
@@ -48,6 +54,8 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
+    "expect": "^1.20.2",
+    "jasmine": "^2.5.3",
     "jasmine-enzyme": "^2.1.0",
     "react-addons-test-utils": "^15.4.2",
     "webpack-dev-server": "^1.16.2"
