@@ -10,7 +10,7 @@
     "test": "npm run jasmine && ava **/*.test.js",
     "jasmine": "node node_modules/jasmine/bin/jasmine.js",
     "start": "node server/server.js",
-    "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 8000",
+    "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 8080",
     "heroku-postbuild": "webpack -p"
   },
   "repository": {

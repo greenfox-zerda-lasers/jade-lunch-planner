@@ -19,8 +19,7 @@ class App extends Component {
     event.preventDefault();
   }
   sendData(value) {
-    console.log(typeof value);
-    return fetch(`/db`, {
+    return fetch('/add', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -43,5 +42,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
