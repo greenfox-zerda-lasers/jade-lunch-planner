@@ -1,7 +1,20 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #CF649A;
+//Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito|Pacifico');
+
+$primary-font:    Nunito;
+$primary-color: #FFFFFF;
 
 body {
-  font: 100% $font-stack;
+  background-color: #A169D2;
+}
+
+h1 {
+  font-family: Pacifico;
+  font-size: 30px;
+  color: #FEDB26;
+}
+
+p, a {
+  font-family: $primary-font;
   color: $primary-color;
 }
