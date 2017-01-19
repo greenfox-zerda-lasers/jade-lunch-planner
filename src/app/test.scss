@@ -6,16 +6,25 @@ $primary-color: #FFFFFF;
 
 body {
   background-color: #A169D2;
+}
+
+.input-wrapper {
   margin: 0 auto;
-}
+  background-color: white;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-h1 {
-  font-family: Pacifico;
-  font-size: 30px;
-  color: #FEDB26;
-}
+  h1 {
+    font-family: Pacifico;
+    font-size: 30px;
+    color: #FEDB26;
+  }
 
-p, a {
-  font-family: $primary-font;
-  color: $primary-color;
+  p, a {
+    font-family: $primary-font;
+    color: $primary-color;
+  }
+
 }

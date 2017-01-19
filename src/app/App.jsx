@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './plate-img.png';
 import './test.scss';
 
 
@@ -30,8 +31,9 @@ class App extends Component {
 
   render() {
     return (
-      <article>
+      <article className="input-wrapper">
         <form onSubmit={this.handleSubmit}>
+          <img src={logo} alt="plate img" />
           <label htmlFor="search">
             Restaurant:
             <input id="search" type="text" value={this.state.value} onChange={this.handleChange} />
