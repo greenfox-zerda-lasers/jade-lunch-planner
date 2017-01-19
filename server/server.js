@@ -32,6 +32,32 @@ app.get('/db', (request, response) => {
   });
 });
 
+app.post('/add', (request, response, next) => {
+  // const results = [];
+  // later grab data from html endpoints
+  // const data = { place: request.body.text, going: true}; // TODO: refaktor after endpoints
+
+  pool.connect((err, client, done) => {
+    if (err) {
+      done();
+      console.log(err);
+      return response.status(500).json({ succes: false, data: err });
+    }
+    // data insertiom
+    client.query({
+      sql: 'INSERT INTO test(text, id) VALUES($1, $2)',
+      values: ['put something here', 'test db '],
+    }, (error, rows) => {
+      console.log(rows);
+      done();
+      if (error) {
+        throw error;
+      }
+      response.send(rows);
+    });
+  });
+});
+
 app.listen(port, () => {
   if (port === 8080) {
     console.log(`A66 Lunch Planner is running on http://localhost: ${port}`);
