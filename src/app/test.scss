@@ -5,7 +5,7 @@ $primary-font:    Nunito;
 $primary-color: #FFFFFF;
 
 body {
-  background-color: #A169D2;
+  background-color: #292931;
 }
 
 .input-wrapper {
@@ -27,8 +27,19 @@ body {
     color: $primary-color;
   }
 
+  .App-logo-spin {
+    animation: App-logo-spin infinite 20s linear;
+    margin: 20px;
+  }
+
   img {
     width: 10vw;
     height: 12vh;
   }
+
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+  }
+
 }

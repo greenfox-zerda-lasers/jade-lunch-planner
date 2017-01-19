@@ -32,7 +32,9 @@ class App extends Component {
   render() {
     return (
       <article className="input-wrapper">
-        <img src={logo} alt="plate img" />
+        <div className="App-logo-spin">
+          <img src={logo} alt="plate img" />
+        </div>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="search">
             Restaurant:
