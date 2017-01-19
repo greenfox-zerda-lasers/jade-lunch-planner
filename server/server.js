@@ -7,9 +7,9 @@ const app = express();
 // const client = new pg.Client(connectionString);
 
 const config = {
-  user: 'ignoc', //env var: PGUSER
-  database: 'dvdrental', //env var: PGDATABASE
-  password: 'admin', //env var: PGPASSWORD
+  user: 'ignoc', // env var: PGUSER
+  database: 'dvdrental', // env var: PGDATABASE
+  password: 'admin', // env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
 };
 
