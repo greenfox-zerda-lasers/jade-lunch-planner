@@ -5,8 +5,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
-app.use(bodyParser.json({ type: 'application/*+json' }));
-// const client = new pg.Client(connectionString);
+const client = new pg.Client(connectionString);
+
+app.use(bodyParser.json());
+app.use(express.static(path.resolve(__dirname, '../dist')));
+
 
 const config = {
   user: process.env.PGUSER, // env var: PGUSER
@@ -15,51 +18,34 @@ const config = {
   host: connectionString, // Server hosting the postgres database
 };
 
-const pool = new pg.Pool(config);
 const port = process.env.PORT || 8080;
+const pool = new pg.Pool(config);
+pool.connect();
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
 
-app.get('/db', (request, response) => {
-  pool.connect((err, client) => {
-    client.query('SELECT * FROM test', (error, result) => {
-      console.log(error);
-      console.log(result);
-      if (error) {
-        console.error(error);
-        response.send(`Err: ${error}`);
-      }
-      response.send(result);
-    });
-  });
-});
-
-app.post('/add', (request, response, next) => {
-  // const results = [];
-  // later grab data from html endpoints
-  // const data = { place: request.body.text, going: true}; // TODO: refaktor after endpoints
-
-  pool.connect((err, client) => {
-    if (err) {
-      return response.status(500).json({ succes: false, data: err });
+app.get('/db', (req, res) => {
+  console.log(req.body);
+  client.query('SELECT * FROM test', (error, result) => {
+    if (error) {
+      res.send(`Err: ${error}`);
     }
-    // data insertiom
-    client.query('INSERT INTO test_table(text, id) VALUES($1)', [request.body.text, 122], (error, rows) => {
-      console.log(rows);
-      if (error) {
-        throw error;
-      }
-      response.send(rows);
-    });
+    res.send(result);
   });
 });
+
+
+app.post('/add', (req, res) => {
+  client.query(`INSERT INTO test_table(text) VALUES(${req.body.text})`, (error, rows) => {
+    if (error) {
+      throw error;
+    }
+    res.send(rows);
+  });
+});
+
 
 app.listen(port, () => {
   if (port === 8080) {
-    console.log(`A66 Lunch Planner is running on http://localhost: ${port}`);
-  } else {
-    console.log(`A66 Lunch Planner is running on PORT: ${port}`);
+    console.log(`A66 Lunch Planner is running on http://localhost:${port}`);
   }
 });
-
-console.log(process.env.DATABASE_URL);
