@@ -5,8 +5,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
-const pool = new pg.Pool(config);
-const port = process.env.PORT || 8080;
+const client = new pg.Client(connectionString);
 
 app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -19,37 +18,31 @@ const config = {
   host: connectionString, // Server hosting the postgres database
 };
 
+const port = process.env.PORT || 8080;
+const pool = new pg.Pool(config);
 
-app.get('/db', (request, response) => {
-  pool.connect((err, client) => {
-    client.query('SELECT * FROM test', (error, result) => {
-      console.log(error);
-      console.log(result);
-      if (error) {
-        console.error(error);
-        response.send(`Err: ${error}`);
-      }
-      response.send(result);
-    });
+
+app.get('/db', (req, res) => {
+  client.query('SELECT * FROM test', (error, result) => {
+    if (error) {
+      res.send(`Err: ${error}`);
+    }
+    res.send(result);
   });
 });
+
 
 app.post('/add', (req, res) => {
-
-  pool.connect((err, client) => {
-    if (err) {
-      return res.status(500).json({ succes: false, data: err });
+  console.log('koszi levi');
+  client.query(`INSERT INTO test_table(text, id) VALUES(${req.body.text}, ${23})`, (error, rows) => {
+    console.log(rows);
+    if (error) {
+      throw error;
     }
-    // data insertiom
-    client.query('INSERT INTO test_table(text, id) VALUES($1)', [req.body.text, 122], (error, rows) => {
-      console.log(rows);
-      if (error) {
-        throw error;
-      }
-      response.send(rows);
-    });
+    res.send(rows);
   });
 });
+
 
 app.listen(port, () => {
   if (port === 8080) {
@@ -58,5 +51,3 @@ app.listen(port, () => {
     console.log(`A66 Lunch Planner is running on PORT: ${port}`);
   }
 });
-
-console.log(process.env.DATABASE_URL);
