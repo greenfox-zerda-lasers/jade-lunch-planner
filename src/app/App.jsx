@@ -14,12 +14,13 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    this.sendData(this.state);
     console.log(`Looking for a restaurant nearby called ${this.state.value}`);
+    this.sendData(this.state);
     event.preventDefault();
   }
   sendData(values) {
     const data = (values) ? JSON.stringify(values) : null;
+    this.state.value = '';
     return fetch('/add', {
       method: 'POST',
       headers: new Headers({
@@ -49,6 +50,9 @@ class App extends Component {
             <input type="submit" value="Send" />
           </div>
         </form>
+        <div className="printBox">
+          <h4>Where is {this.state.value}?</h4>
+        </div>
       </article>
     );
   }
