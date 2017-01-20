@@ -1,8 +1,5 @@
-//Fonts
 @import url('https://fonts.googleapis.com/css?family=Bitter:700|Raleway:200,400');
 
-$primary-font:    Nunito;
-$primary-color: #FFFFFF;
 
 html {
   -webkit-box-sizing: border-box;
@@ -14,6 +11,7 @@ html {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
+
 
 body {
   margin: 0;
@@ -32,7 +30,7 @@ body {
 
 article {
   width: 530px;
-  height: 700px;
+  height: 800px;
   margin-top: 30px;
   margin: 0;
 
@@ -92,6 +90,7 @@ article {
 
   .button-wrapper {
     margin-top: 10px;
+    margin-bottom: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -112,6 +111,17 @@ article {
     input:hover {
       background: linear-gradient(to top, rgba(255,94,94,1) 0%, rgba(74,21,49,1) 100%);
       width: 110px;
+    }
+  }
+  .printBox {
+    margin-top: 0;
+    text-align: center;
+    h4 {
+      margin: 0;
+      font-family: monospace;
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 300;
     }
   }
 }
