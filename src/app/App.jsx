@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './test.scss';
+import './App.scss';
 
 
 class App extends Component {
@@ -18,7 +18,6 @@ class App extends Component {
     console.log(`Looking for a restaurant nearby called ${this.state.value}`);
     event.preventDefault();
   }
-
   sendData(values) {
     const data = (values) ? JSON.stringify(values) : null;
     return fetch('/add', {
@@ -29,7 +28,6 @@ class App extends Component {
       body: data,
     });
   }
-
   render() {
     return (
       <article className="input-wrapper">
@@ -39,7 +37,13 @@ class App extends Component {
         </div>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="search">
-            <input id="search" type="text" placeholder="search place..." value={this.state.value} onChange={this.handleChange} />
+            <input
+              id="search"
+              type="text"
+              placeholder="search place..."
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
           </label>
           <div className="button-wrapper">
             <input type="submit" value="Send" />
