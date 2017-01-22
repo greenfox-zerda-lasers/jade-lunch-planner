@@ -11,8 +11,9 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 const port = process.env.PORT || 8080;
 
 
+pg.defaults.ssl = true;
 const db = pg({
-  host: process.env.DB_HOST || 'localhost',
+  host: process.env.DATABASE_URL || 'localhost',
   user: process.env.DB_USER || 'jade',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'lunch_planner',
