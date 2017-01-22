@@ -14,7 +14,7 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    console.log(`Looking for a restaurant nearby called ${this.state.value}`);
+    console.log(`Looking for a restauraaant nearby called ${this.state.value}`);
     this.sendData(this.state);
     event.preventDefault();
   }
@@ -23,10 +23,12 @@ class App extends Component {
     this.state.value = '';
     return fetch('/add', {
       method: 'POST',
-      headers: new Headers({
+      headers: {
         'Content-Type': 'application/json',
-      }),
+      },
       body: data,
+    }).catch((error) => {
+      console.log('Request Failed', error);
     });
   }
   render() {

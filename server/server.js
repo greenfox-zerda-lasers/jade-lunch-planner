@@ -33,7 +33,7 @@ app.get('/db', (req, res) => {
 app.post('/add', (req, res) => {
   const query = {
     text: 'INSERT INTO lunch_plans(plan) VALUES($1) returning id',
-    values: [req.body.text],
+    values: [req.body.value],
   };
   db.one(query)
     .then((plan) => {
