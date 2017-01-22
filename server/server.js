@@ -31,13 +31,17 @@ app.get('/db', (req, res) => {
 
 
 app.post('/add', (req, res) => {
-  console.log(req.body.text);
-  db.any(`INSERT INTO lunch_plans(plan) VALUES(${req.body.text})`, (error, rows) => {
-    if (error) {
-      throw error;
-    }
-    res.send(rows);
-  });
+  const query = {
+    text: 'INSERT INTO lunch_plans(plan) VALUES($1) returning id',
+    values: [req.body.text],
+  };
+  db.one(query)
+    .then((plan) => {
+      res.json({ status: 'ok', id: plan.id });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 
