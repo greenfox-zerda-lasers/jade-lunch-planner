@@ -8,6 +8,12 @@
     ],
     "rules": {
       "prefer-stateless-function": [ 0, { "ignorePureComponents": true }],
-      "no-console": 0
+      "no-console": 0,
+      "max-len": ["error", {
+        "ignoreComments": true,
+        "ignoreUrls": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreStrings": true
+      }]
     }
 }
