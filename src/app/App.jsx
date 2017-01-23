@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './reset.scss';
+import Timer from './Timer';
 import './App.scss';
-
+import Moment from 'moment';
 
 class App extends Component {
   constructor(props) {
@@ -56,6 +57,10 @@ class App extends Component {
           </label>
           <input type="submit" value="Edit to update a plan" />
         </form>
+<!--         <div className="printBox">
+          <Timer />
+          <h4>Where is {this.state.value}?</h4>
+        </div> -->
       </article>
     );
   }
