@@ -14,7 +14,6 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    console.log(`Looking for a restaurant nearby called ${this.state.value}`);
     this.sendData(this.state);
     event.preventDefault();
   }
