@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 
 const db = pg({
@@ -47,7 +47,7 @@ app.post('/add', (req, res) => {
 
 
 app.listen(port, () => {
-  if (port === 8080) {
+  if (port === 3000) {
     console.log(`A66 Lunch Planner is running on http://localhost:${port}`);
   }
 });

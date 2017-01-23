@@ -10,7 +10,7 @@
     "test": "npm run jasmine && ava **/*.test.js",
     "jasmine": "node node_modules/jasmine/bin/jasmine.js",
     "start": "node server/server.js",
-    "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 8080",
+    "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 3000",
     "heroku-postbuild": "webpack -p"
   },
   "repository": {
@@ -42,10 +42,8 @@
     "css-loader": "^0.26.1",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
-    "moment": "^2.17.1",
     "node-sass": "^4.3.0",
     "pg-promise": "^5.5.2",
-    "rc-time-picker": "^2.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "sass-loader": "^4.1.1",
