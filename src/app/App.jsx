@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <article className="input-wrapper">
         <form onSubmit={this.handleSubmit}>
-          <img src="../src/imgs/logo.png" alt="logo" />
+          <img src="../imgs/a-66-header-logo-lvcceq.png" className="a66_header_logo_lvcceq"/>
           <h1>LUNCH</h1>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> Is
             <input
@@ -57,7 +57,7 @@ class App extends Component {
           </label>
           <input type="submit" value="Edit to update a plan" />
         </form>
-        <div className="printBox">  
+        <div className="printBox">
           <h4>Where is {this.state.value}?</h4>
         </div>
       </article>

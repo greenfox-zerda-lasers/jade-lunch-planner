@@ -42,6 +42,12 @@ body {
   overflow: hidden;
 }
 
+.a66_header_logo_lvcceq {
+  width: 484px;
+  height: 286px;
+  object-fit: contain;
+}
+
 article {
   width: 388px;
   height: 394px;
@@ -49,13 +55,26 @@ article {
   padding: 71px 30px 0;
   background: rgba(126, 211, 33, .9);
   font-family: OldStandardTT;
+
   form {
     display: flex;
     flex-direction: column;
-    position: ralative;
+    position: relative;
   }
   h1 {
     position: absolute;
+    width: 342px;
+    height: 184px;
+    font-family: Oswald;
+    font-size: 124px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    text-shadow: 10px 10px 0 #f8e81c;
   }
   label {
     @include title;
