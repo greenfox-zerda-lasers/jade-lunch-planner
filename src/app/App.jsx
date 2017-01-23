@@ -57,8 +57,7 @@ class App extends Component {
           </label>
           <input type="submit" value="Edit to update a plan" />
         </form>
-        <div className="printBox">
-          <Timer />
+        <div className="printBox">  
           <h4>Where is {this.state.value}?</h4>
         </div>
       </article>
