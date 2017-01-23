@@ -1,5 +1,28 @@
-@import url('https://fonts.googleapis.com/css?family=Bitter:700|Raleway:200,400');
 
+@import url('https://fonts.googleapis.com/css?family=Old+Standard+TT|Oswald:400,700');
+
+// $assetPath : "/imgs";
+// @function get-path-to-assets($assetPath){
+//   @return $assetPath;
+// }
+
+
+@mixin title {
+  font-size: 22px;
+  color: #360033;
+}
+
+@mixin user-input {
+  height: 72px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px;
+  font-family: Oswald;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #360033;
+}
 
 html {
   -webkit-box-sizing: border-box;
@@ -11,117 +34,53 @@ html {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
-
-
 body {
-  margin: 0;
-}
-
-#root {
-  background: linear-gradient(to bottom, rgba(223,231,235,1) 0%, rgba(191,42,13,1) 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100vh;
+  // background: url('../imgs/menza.jpg');
   overflow: hidden;
-  margin: 0;
 }
 
 article {
-  width: 530px;
-  height: 800px;
-  margin-top: 30px;
-  margin: 0;
-
-  .titleBox {
-    width: 100%;
-    height: 250px;
-    text-align: center;
-  }
-
-  h1 {
-    font-family: Bitter;
-    font-weight: 700;
-    font-size: 8rem;
-    color: #393939;
-    text-shadow: 2px 2px 4px #93b1c6;
-    margin-bottom: -1.5rem;
-  }
-
-  h2 {
-    font-family: Raleway;
-    font-weight: 400;
-    font-size: 3.5rem;
-    color: #f5f5f5;
-    margin-top: 0;
-  }
-
+  width: 388px;
+  height: 394px;
+  margin: 30vh auto;
+  padding: 71px 30px 0;
+  background: rgba(126, 211, 33, .9);
+  font-family: OldStandardTT;
   form {
-    height: 200px;
-    width: 100%;
     display: flex;
-    margin-top: 40px;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    position: ralative;
   }
-
+  h1 {
+    position: absolute;
+  }
   label {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    input {
-      font-family: Raleway;
-      font-weight: 200;
-      font-size: 2.6rem;
-      width: 80%;
-      height: 3rem;
-      color: #ccc;
-      border-radius: 8px;
-      padding: .2rem;
-      box-shadow: inset 5px 5px 11px -20px rgba(0,0,0,0.75);
-    }
-    input:focus {
-      outline: 3px solid tomato;
-      color: #2e2e2e;
+    @include title;
+    b {
+      padding: 8px 1px;
+      background: #f8e81c;
+      font-weight: normal;
     }
   }
-
-  .button-wrapper {
-    margin-top: 10px;
-    margin-bottom: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    input {
-      width: 100px;
-      height: 50px;
-      font-size: 30px;
-      font-weight: bold;
-      border-radius: 8px;
-      background: transparent;
-      transition: all .3s ease;
-      color: #fff;
-      background: linear-gradient(to bottom, rgba(255,94,94,1) 0%, rgba(74,21,49,1) 100%);
-    }
-    input:focus {
-      outline: none;
-    }
-    input:hover {
-      background: linear-gradient(to top, rgba(255,94,94,1) 0%, rgba(74,21,49,1) 100%);
-      width: 110px;
-    }
+  label[id=location-label] {
+    text-align: right;
   }
-  .printBox {
-    margin-top: 0;
-    text-align: center;
-    h4 {
-      margin: 0;
-      font-family: monospace;
-      color: #fff;
-      font-size: 2.4rem;
-      font-weight: 300;
-    }
+  input[id=location] {
+    @include user-input;
+    margin-bottom: 25px;
+  }
+  input[id=setTime] {
+    @include user-input;
+    margin-bottom: 16px;
+  }
+  input[type=submit] {
+    margin: 0;
+    background: none;
+    border: none;
+    text-align: right;
+    font-family: OldStandardTT;
+    @include title;
   }
 }

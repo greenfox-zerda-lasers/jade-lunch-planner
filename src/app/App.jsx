@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './reset.scss';
 import Timer from './Timer';
 import './App.scss';
 import Moment from 'moment';
@@ -15,7 +16,7 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    console.log(`Looking for a restauraaant nearby called ${this.state.value}`);
+    console.log(`Looking for a restaurant nearby called ${this.state.value}`);
     this.sendData(this.state);
     event.preventDefault();
   }
@@ -35,28 +36,31 @@ class App extends Component {
   render() {
     return (
       <article className="input-wrapper">
-        <div className="titleBox">
-          <h1>A66</h1>
-          <h2>Lunch Planner</h2>
-        </div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="search">
+          <img src="../src/imgs/logo.png" alt="logo" />
+          <h1>LUNCH</h1>
+          <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> Is
             <input
-              id="search"
+              id="location"
               type="text"
-              placeholder="search place..."
+              placeholder="..."
               value={this.state.value}
               onChange={this.handleChange}
             />
           </label>
-          <div className="button-wrapper">
-            <input type="submit" value="Send" />
-          </div>
+          <label htmlFor="setTime">Current Lunch <b>Time</b> Is
+            <input
+              id="setTime"
+              type="text"
+              placeholder="..."
+            />
+          </label>
+          <input type="submit" value="Edit to update a plan" />
         </form>
-        <div className="printBox">
+<!--         <div className="printBox">
           <Timer />
           <h4>Where is {this.state.value}?</h4>
-        </div>
+        </div> -->
       </article>
     );
   }
