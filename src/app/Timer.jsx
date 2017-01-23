@@ -1,7 +1,3 @@
-// import TimePicker from 'rc-time-picker';
-// import 'rc-time-picker/assets/index.css';
-// import moment from 'moment';
-
 import 'rc-time-picker/assets/index.css'
 import React, { Component } from 'react';
 import moment from 'moment';
@@ -20,10 +16,10 @@ class Timer extends Component {
       <aside>
         <TimePicker
           style={{ width: 100 }}
-          showSecond={ showSecond }
+          showSecond={showSecond}
           defaultValue={moment()}
           className="xxx"
-          onChange={ onChange }
+          onChange={onChange}
         />
       </aside>
     );
