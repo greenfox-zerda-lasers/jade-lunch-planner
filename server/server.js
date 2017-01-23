@@ -11,11 +11,14 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 const port = process.env.PORT || 8080;
 
 
+// const db = pg({
+//   host: process.env.DB_HOST || 'localhost',
+//   user: process.env.DB_USER || 'jade',
+//   password: process.env.DB_PASSWORD || '',
+//   database: process.env.DB_NAME || 'lunch_planner',
+// });
 const db = pg({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'jade',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'lunch_planner',
+  host: process.env.DATABASE_URL || 'localhost',
 });
 
 
