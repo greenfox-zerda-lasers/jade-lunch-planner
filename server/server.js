@@ -10,14 +10,9 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 const port = process.env.PORT || 3000;
 
+const localDb = 'postgres://root@127.0.0.1:5432/dadjlnu7ht6s6h';
 
-const db = pg({
-    host: process.env.DATABASE_URL || 'localhost',
-    user: process.env.DB_USER || 'jade',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'lunch_planner',
-});
-;
+const db = pg(process.env.DATABASE_URL || localDb);
 
 
 app.get('/db', (req, res) => {
@@ -32,8 +27,9 @@ app.get('/db', (req, res) => {
 
 
 app.post('/add', (req, res) => {
+  console.log(req.body);
   const query = {
-    text: 'INSERT INTO lunch_plans(plan) VALUES($1) returning id',
+    text: 'INSERT INTO plans (place) VALUES ($1) returning id',
     values: [req.body.value],
   };
   db.one(query)
