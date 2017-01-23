@@ -27,7 +27,7 @@ class App extends Component {
       },
       body: data,
     }).catch((error) => {
-      console.log('Request Failed', error);
+      console.error('Request Failed', error);
     });
   }
   render() {

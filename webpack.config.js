@@ -2,19 +2,21 @@ const path = require('path');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src') + '/index.jsx',
-  resolve:
-  {
+  resolve: {
     extensions: ['', '.js', '.jsx'],
+    },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
-    preLoaders: [
+    loaders: [
       {
         test: /\.(js|jsx?)$/,
-        loader: 'eslint',
+        loader: 'eslint-loader',
         exclude: /node_modules/
-      }
-    ],
-    loaders: [
+      },
       {
         test: /\.(js|jsx?)$/,
         include: path.resolve(__dirname, 'src'),
@@ -37,11 +39,6 @@ module.exports = {
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
   },
   eslint: {
     failOnWarning: false,
