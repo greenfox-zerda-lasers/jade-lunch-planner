@@ -1,51 +1,49 @@
 const path = require('path');
 const express = require('express');
-const pg = require('pg');
+const pg = require('pg-promise')();
 const bodyParser = require('body-parser');
 
-const app = express();
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/';
-const client = new pg.Client(connectionString);
 
+const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
+const port = process.env.PORT || 3000;
 
-const config = {
-  user: process.env.PGUSER, // env var: PGUSER
-  database: process.env.DATABASE_URL, // env var: PGDATABASE
-  password: process.env.PGPASSWORD, // env var: PGPASSWORD
-  host: connectionString, // Server hosting the postgres database
-};
+const localDb = 'postgres://root@127.0.0.1:5432/dadjlnu7ht6s6h';
 
-const port = process.env.PORT || 8080;
-const pool = new pg.Pool(config);
-pool.connect();
+const db = pg(process.env.DATABASE_URL || localDb);
 
 
 app.get('/db', (req, res) => {
-  console.log(req.body);
-  client.query('SELECT * FROM test', (error, result) => {
-    if (error) {
-      res.send(`Err: ${error}`);
-    }
-    res.send(result);
-  });
+  db.any('SELECT * FROM lunch_plans')
+    .then((plans) => {
+      res.send(plans);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 
 app.post('/add', (req, res) => {
-  client.query(`INSERT INTO test_table(text) VALUES(${req.body.text})`, (error, rows) => {
-    if (error) {
-      throw error;
-    }
-    res.send(rows);
-  });
+  console.log(req.body);
+  const query = {
+    text: 'INSERT INTO plans (place) VALUES ($1) returning id',
+    values: [req.body.value],
+  };
+  db.one(query)
+    .then((plan) => {
+      res.json({ status: 'ok', id: plan.id });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 
 app.listen(port, () => {
-  if (port === 8080) {
+  if (port === 3000) {
     console.log(`A66 Lunch Planner is running on http://localhost:${port}`);
   }
 });
