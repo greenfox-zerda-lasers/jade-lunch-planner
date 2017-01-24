@@ -17,17 +17,21 @@ const db = pg(process.env.DATABASE_URL || localDb);
 
 
 app.put('/api/plans/:plan_id', (req, res) => {
-  console.log(req.params.plan_id);
-  const query = `UPDATE plans
-    SET place = ${req.body.vale},
-    time = ${req.body.time}
-    WHERE id = ${req.params.id}`;
+  const query = {
+    text: `UPDATE plans
+    SET place = ($1),
+    time = ($2)
+    WHERE plan_id = 1`,
+    values: [req.body.value, req.body.time]
+  };
   db.one(query)
-    .then((plan) => {
-      res.json({ status: 'ok', id: plan.id });
+    .then(() => {
+      console.log('siker');
+      res.json({ status: 'ok', id: req.params.pan_id });
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
+      console.log(err.message);
     });
 });
 

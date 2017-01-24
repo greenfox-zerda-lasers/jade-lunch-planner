@@ -7,8 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      time: '',
+      value: '?',
+      time: '?',
     };
   }
   componentDidUpdate() {
