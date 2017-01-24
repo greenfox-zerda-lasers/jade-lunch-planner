@@ -54,6 +54,7 @@ class App extends Component {
             />
           </label>
           <span>Edit to update plan</span>
+          <button type="submit">Post</button>
         </form>
       </article>
     );
