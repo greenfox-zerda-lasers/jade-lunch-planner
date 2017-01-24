@@ -6,29 +6,32 @@ import './App.scss';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      value: '',
+      time: '',
+    };
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-  handleSubmit(event) {
-    this.sendData(this.state);
-    event.preventDefault();
-  }
-  sendData(values) {
-    const data = (values) ? JSON.stringify(values) : null;
-    this.state.value = '';
-    return fetch('/add', {
-      method: 'POST',
+  componentDidUpdate() {
+    console.log(this.state);
+    const plan_id = 1;
+    return fetch(`/api/plans/${plan_id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: data,
+      body: JSON.stringify(this.state),
     }).catch((error) => {
       console.error('Request Failed', error);
+    });
+  }
+  handleChange(event) {
+    const location =  event.target.id === 'location' ?
+    event.target.value : this.state.value;
+    const time = event.target.id === 'setTime' ?
+    event.target.value : this.state.time;
+    this.setState({
+      value: location,
+      time: time,
     });
   }
   render() {
@@ -43,7 +46,7 @@ class App extends Component {
               type="text"
               placeholder="..."
               value={this.state.value}
-              onChange={this.handleChange}
+              onChange={this.handleChange.bind(this)}
             />
           </label>
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
@@ -51,6 +54,8 @@ class App extends Component {
               id="setTime"
               type="text"
               placeholder="..."
+              value={this.state.time}
+              onChange={this.handleChange.bind(this)}
             />
           </label>
           <span>Edit to update plan</span>

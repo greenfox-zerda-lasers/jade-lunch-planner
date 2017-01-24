@@ -16,23 +16,12 @@ const localDb = 'postgres://jade@127.0.0.1:5432/lunch_planner';
 const db = pg(process.env.DATABASE_URL || localDb);
 
 
-app.get('/db', (req, res) => {
-  db.any('SELECT * FROM plans')
-    .then((plans) => {
-      res.send(plans);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-});
-
-
-app.post('/add', (req, res) => {
-  console.log(req.body);
-  const query = {
-    text: 'INSERT INTO plans (place, time) VALUES ($1, $2) returning id',
-    values: [req.body.value],
-  };
+app.put('/api/plans/:plan_id', (req, res) => {
+  console.log(req.params.plan_id);
+  const query = `UPDATE plans
+    SET place = ${req.body.vale},
+    time = ${req.body.time}
+    WHERE id = ${req.params.id}`;
   db.one(query)
     .then((plan) => {
       res.json({ status: 'ok', id: plan.id });
