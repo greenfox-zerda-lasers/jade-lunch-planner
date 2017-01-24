@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import timeValidator from './time_validator';
 import './reset.scss';
 import './App.scss';
 
@@ -7,19 +8,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '?',
-      time: '?',
+      value: '',
+      time: '00:00',
     };
   }
   componentDidUpdate() {
-    console.log(this.state);
+    const timestamp = timeValidator(this.state.time);
     const plan_id = 1;
     return fetch(`/api/plans/${plan_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({
+        value: this.state.value,
+        time: timestamp,
+      })
     }).catch((error) => {
       console.error('Request Failed', error);
     });
@@ -53,7 +57,7 @@ class App extends Component {
             <input
               id="setTime"
               type="text"
-              placeholder="..."
+              placeholder="12:00"
               value={this.state.time}
               onChange={this.handleChange.bind(this)}
             />
