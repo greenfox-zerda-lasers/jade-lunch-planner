@@ -47,7 +47,7 @@ body {
   position: absolute;
   right: 200px;
   object-fit: contain;
-  bottom: 327px;
+  bottom: 320px;
 }
 
 article {
@@ -56,13 +56,8 @@ article {
   margin: 30vh auto;
   padding: 71px 30px 0;
   background: rgba(126, 211, 33, .9);
-  font-family: OldStandardTT;
+  font-family: Old Standard TT;
   font-size: 22px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
   text-align: left;
   color: #360033;
 
@@ -75,7 +70,7 @@ article {
     position: absolute;
     width: 342px;
     height: 184px;
-    bottom: 365px;
+    bottom: 352px;
     left: 150px;
     font-family: Oswald;
     font-size: 124px;
@@ -107,12 +102,9 @@ article {
     @include user-input;
     margin-bottom: 16px;
   }
-  input[type=submit] {
-    margin: 0;
-    background: none;
-    border: none;
-    text-align: right;
-    font-family: OldStandardTT;
+  span {
     @include title;
+    text-align: right;
+    font-family: Old Standard TT;
   }
 }

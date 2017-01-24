@@ -53,7 +53,7 @@ class App extends Component {
               placeholder="..."
             />
           </label>
-          <input type="submit" value="Edit to update plan" />
+          <span>Edit to update plan</span>
         </form>
       </article>
     );
