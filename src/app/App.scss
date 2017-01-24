@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT|Oswald:400,700');
 
+
 // $assetPath : "/imgs";
 // @function get-path-to-assets($assetPath){
 //   @return $assetPath;
@@ -42,6 +43,13 @@ body {
   overflow: hidden;
 }
 
+.logo {
+  position: absolute;
+  right: 200px;
+  object-fit: contain;
+  bottom: 327px;
+}
+
 article {
   width: 388px;
   height: 394px;
@@ -49,13 +57,36 @@ article {
   padding: 71px 30px 0;
   background: rgba(126, 211, 33, .9);
   font-family: OldStandardTT;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #360033;
+
   form {
     display: flex;
     flex-direction: column;
-    position: ralative;
+    position: relative;
   }
   h1 {
     position: absolute;
+    width: 342px;
+    height: 184px;
+    bottom: 365px;
+    left: 150px;
+    font-family: Oswald;
+    font-size: 124px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    text-shadow: 10px 10px 0 #f8e81c;
   }
   label {
     @include title;
