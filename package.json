@@ -40,12 +40,13 @@
     "babel-preset-react": "^6.16.0",
     "body-parser": "^1.16.0",
     "css-loader": "^0.26.1",
+    "eslint": "^3.13.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^6.9.0",
     "express": "^4.14.0",
     "file-loader": "^0.9.0",
-    "moment": "^2.17.1",
     "node-sass": "^4.3.0",
     "pg-promise": "^5.5.2",
-    "rc-time-picker": "^2.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "sass-loader": "^4.1.1",
@@ -55,11 +56,6 @@
   },
   "devDependencies": {
     "enzyme": "^2.7.0",
-    "eslint": "^3.13.1",
-    "eslint-config-airbnb": "^14.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
     "expect": "^1.20.2",
     "jasmine": "^2.5.3",
     "jasmine-enzyme": "^2.1.0",
@@ -68,6 +64,11 @@
     "karma-jasmine": "^1.1.0",
     "react-addons-test-utils": "^15.4.2",
     "webpack-dev-server": "^1.16.2"
+  },
+  "eslintConfig": {
+    "globals": {
+      "document": true
+    }
   },
   "bugs": {
     "url": "https://github.com/greenfox-zerda-lasers/jade-lunch-planner/issues"

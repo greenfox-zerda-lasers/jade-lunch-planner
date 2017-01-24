@@ -2,16 +2,21 @@ const path = require('path');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src') + '/index.jsx',
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
   module: {
     loaders: [
+      {
+        test: /\.(js|jsx?)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.(js|jsx?)$/,
         include: path.resolve(__dirname, 'src'),
@@ -34,5 +39,9 @@ module.exports = {
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
+  },
+  eslint: {
+    failOnWarning: false,
+    failOnError: false
   },
 };

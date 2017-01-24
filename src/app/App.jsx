@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './reset.scss';
-import Timer from './Timer';
 import './App.scss';
-import Moment from 'moment';
 
 
 class App extends Component {
@@ -17,7 +15,6 @@ class App extends Component {
     this.setState({ value: event.target.value });
   }
   handleSubmit(event) {
-    console.log(`Looking for a restaurant nearby called ${this.state.value}`);
     this.sendData(this.state);
     event.preventDefault();
   }
@@ -31,7 +28,7 @@ class App extends Component {
       },
       body: data,
     }).catch((error) => {
-      console.log('Request Failed', error);
+      console.error('Request Failed', error);
     });
   }
   render() {
@@ -58,9 +55,6 @@ class App extends Component {
           </label>
           <input type="submit" value="Edit to update plan" />
         </form>
-        <div className="printBox">
-          <h4>Where is {this.state.value}?</h4>
-        </div>
       </article>
     );
   }
