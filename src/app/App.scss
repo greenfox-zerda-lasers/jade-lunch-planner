@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT|Oswald:400,700');
 
+
 // $assetPath : "/imgs";
 // @function get-path-to-assets($assetPath){
 //   @return $assetPath;
@@ -42,10 +43,11 @@ body {
   overflow: hidden;
 }
 
-.a66_header_logo_lvcceq {
-  width: 484px;
-  height: 286px;
+.logo {
+  position: absolute;
+  right: 200px;
   object-fit: contain;
+  bottom: 327px;
 }
 
 article {
@@ -55,6 +57,14 @@ article {
   padding: 71px 30px 0;
   background: rgba(126, 211, 33, .9);
   font-family: OldStandardTT;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #360033;
 
   form {
     display: flex;
@@ -65,6 +75,8 @@ article {
     position: absolute;
     width: 342px;
     height: 184px;
+    bottom: 365px;
+    left: 150px;
     font-family: Oswald;
     font-size: 124px;
     font-weight: bold;

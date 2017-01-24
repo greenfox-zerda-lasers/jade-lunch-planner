@@ -4,6 +4,7 @@ import Timer from './Timer';
 import './App.scss';
 import Moment from 'moment';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -37,9 +38,9 @@ class App extends Component {
     return (
       <article className="input-wrapper">
         <form onSubmit={this.handleSubmit}>
-          <img src="../imgs/a-66-header-logo-lvcceq.png" className="a66_header_logo_lvcceq"/>
+          <img src={require('../imgs/a66-logo.png')} className="logo"/>
           <h1>LUNCH</h1>
-          <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> Is
+          <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
             <input
               id="location"
               type="text"
@@ -48,14 +49,14 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <label htmlFor="setTime">Current Lunch <b>Time</b> Is
+          <label htmlFor="setTime">Current Lunch <b>Time</b> is
             <input
               id="setTime"
               type="text"
               placeholder="..."
             />
           </label>
-          <input type="submit" value="Edit to update a plan" />
+          <input type="submit" value="Edit to update plan" />
         </form>
         <div className="printBox">
           <h4>Where is {this.state.value}?</h4>
