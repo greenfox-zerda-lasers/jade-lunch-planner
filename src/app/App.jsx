@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import timeValidator from './time_validator';
 import './reset.scss';
 import './App.scss';
 
@@ -6,29 +7,35 @@ import './App.scss';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      value: '',
+      time: '00:00',
+    };
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-  handleSubmit(event) {
-    this.sendData(this.state);
-    event.preventDefault();
-  }
-  sendData(values) {
-    const data = (values) ? JSON.stringify(values) : null;
-    this.state.value = '';
-    return fetch('/add', {
-      method: 'POST',
+  componentDidUpdate() {
+    const timestamp = timeValidator(this.state.time);
+    const plan_id = 1;
+    return fetch(`/api/plans/${plan_id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: data,
+      body: JSON.stringify({
+        value: this.state.value,
+        time: timestamp,
+      })
     }).catch((error) => {
       console.error('Request Failed', error);
+    });
+  }
+  handleChange(event) {
+    const location =  event.target.id === 'location' ?
+    event.target.value : this.state.value;
+    const time = event.target.id === 'setTime' ?
+    event.target.value : this.state.time;
+    this.setState({
+      value: location,
+      time: time,
     });
   }
   render() {
@@ -43,14 +50,16 @@ class App extends Component {
               type="text"
               placeholder="..."
               value={this.state.value}
-              onChange={this.handleChange}
+              onChange={this.handleChange.bind(this)}
             />
           </label>
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
             <input
               id="setTime"
               type="text"
-              placeholder="..."
+              placeholder="12:00"
+              value={this.state.time}
+              onChange={this.handleChange.bind(this)}
             />
           </label>
           <span>Edit to update plan</span>
