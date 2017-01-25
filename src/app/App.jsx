@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import timeValidator from './time_validator';
+import validateHhMm from './time_validator';
 import './reset.scss';
 import './App.scss';
 
@@ -13,7 +13,7 @@ class App extends Component {
     };
   }
   componentDidUpdate() {
-    const timestamp = timeValidator(this.state.time);
+    const timestamp = validateHhMm(this.state.time);
     const plan_id = 1;
     return fetch(`/api/plans/${plan_id}`, {
       method: 'PUT',
