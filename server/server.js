@@ -17,12 +17,14 @@ const db = pg(process.env.DATABASE_URL || localDb);
 
 
 app.put('/api/plans/:plan_id', (req, res) => {
+  console.log(req.body);
   const query =
     `UPDATE plans
     SET place = '${req.body.value}',
     time = '${req.body.time}'
     WHERE plan_id = ${req.params.plan_id}
     RETURNING plan_id`;
+  console.log(req.body);
   db.one(query)
     .then((dbResponse) => {
       res.json({ status: 'ok', id: dbResponse.plan_id });

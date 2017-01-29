@@ -56,14 +56,13 @@ class App extends Component {
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
             <input
               id="setTime"
-              type="text"
+              type="time"
               placeholder="12:00"
               value={this.state.time}
               onChange={this.handleChange.bind(this)}
             />
           </label>
           <span>Edit to update plan</span>
-          <button type="submit">Post</button>
         </form>
       </article>
     );

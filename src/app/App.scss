@@ -2,12 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT|Oswald:400,700');
 
 
-// $assetPath : "/imgs";
-// @function get-path-to-assets($assetPath){
-//   @return $assetPath;
-// }
-
-
 @mixin title {
   font-size: 22px;
   color: #360033;
@@ -106,10 +100,5 @@ article {
     @include title;
     text-align: right;
     font-family: Old Standard TT;
-  }
-
-  button {
-    border: 1px solid black;
-    width: 20%;
   }
 }
