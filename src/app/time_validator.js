@@ -1,32 +1,24 @@
-
-const lengthChecker = (number) => {
-  return number.toString().length == 2 ? number : '0' + number;
-};
+'use strict';
 
 
-const timestampNormalizer = (time) => {
-  const dateNow = new Date();
-  const year = 1900 + dateNow.getYear();
-  const month = lengthChecker(1 + dateNow.getMonth());
-  const day = lengthChecker(dateNow.getDate());
-  const hour = time.split(':')[0];
-  const min = time.split(':')[1];
+module.exports = {
+  dateFormatter: (time, timezoneOffset) => {
+    const today = new Date();
+    const year = 1900 + today.getYear();
+    const month = today.getMonth();
+    const day = today.getDate();
 
-  return `${year}-${month}-${day} ${hour}:${min}:00`;
-};
+    const hour = time.split(':')[0];
+    const min = time.split(':')[1];
 
+    const lunchTimeLocale = new Date(Date.UTC(
+      year, month, day, hour, min));
+    const lunchTimeUTC = lunchTimeLocale.getTime() + (timezoneOffset * 60000);
 
-const validateHhMm = (inputField) => {
-  const isValid =
-    /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/
-    .test(inputField);
-
-  if (isValid) {
-    return timestampNormalizer(inputField);
-  } else {
-    console.log('Wrong time format! It should look like ==> 12:40');
+    return lunchTimeUTC;
+  },
+  dateLocalizer: (time) => {
+    const hello = new Date(parseInt(time));
+    console.log(hello.toLocaleString());
   }
-}
-
-
-export default validateHhMm;
+};
