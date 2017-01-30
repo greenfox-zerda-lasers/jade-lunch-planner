@@ -32,7 +32,6 @@ app.get('/api/plans/:plan_id', (req, res) => {
         minute: time.minute,
       }
     }
-    console.log(planData);
     res.json(planData);
   })
   .catch((error) => {

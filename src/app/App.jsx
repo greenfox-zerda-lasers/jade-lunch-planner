@@ -29,7 +29,6 @@ class App extends Component {
       return response.json();
     })
     .then((rows) => {
-      console.log(rows.time);
       this.setState({
         value: rows.place,
         time: `${rows.time.hour}:${rows.time.minute}`,
@@ -56,7 +55,8 @@ class App extends Component {
     });
   }
   handleChange(event) {
-    const location =  event.target.id === 'location' ?
+    console.log(event.target.value.length);
+    const location = event.target.id === 'location' ?
     event.target.value : this.state.value;
     const time = event.target.id === 'setTime' ?
     event.target.value : this.state.time;
