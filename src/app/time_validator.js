@@ -29,6 +29,6 @@ module.exports = {
     const hour = lengthChecker(localTime.split(':', 1)[0]);
     const minute = localTime.split(':', 2)[1];
 
-    return time = `${hour}:${minute}`;
+    return `${hour}:${minute}`;
   }
 };
