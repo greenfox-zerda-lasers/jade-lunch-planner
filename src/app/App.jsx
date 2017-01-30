@@ -5,7 +5,7 @@ import './App.scss';
 
 const timezoneOffset = () => {
   return new Date().getTimezoneOffset();
-}
+};
 
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
       this.setState({
         place: row.place.trim(),
         time: `${row.time.hour}:${row.time.minute}`,
-      })
+      });
     })
     .catch((error) => {
       console.log('Request Failed', error);
