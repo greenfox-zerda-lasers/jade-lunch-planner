@@ -43,7 +43,7 @@ app.put('/api/plans/:plan_id', (req, res) => {
   const timestamp = validator.dateFormatter(req.body.time, req.body.timezoneOffset);
   const query =
     `UPDATE plans
-    SET place = '${req.body.value}',
+    SET place = '${req.body.place}',
     time = '${timestamp}'
     WHERE plan_id = ${req.params.plan_id}
     RETURNING plan_id, time`;

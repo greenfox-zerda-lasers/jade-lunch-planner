@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      place: '',
       time: '00:00',
     };
   }
@@ -46,7 +46,7 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        value: this.state.value,
+        place: this.state.place,
         time: this.state.time,
         timezoneOffset: timezoneOffset(),
       })
@@ -55,13 +55,12 @@ class App extends Component {
     });
   }
   handleChange(event) {
-    console.log(event.target.value.length);
     const location = event.target.id === 'location' ?
-    event.target.value : this.state.value;
+    event.target.value : this.state.place;
     const time = event.target.id === 'setTime' ?
     event.target.value : this.state.time;
     this.setState({
-      value: location,
+      place: location,
       time: time,
     });
   }
