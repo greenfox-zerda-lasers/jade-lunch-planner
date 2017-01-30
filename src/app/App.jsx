@@ -16,6 +16,29 @@ class App extends Component {
       time: '00:00',
     };
   }
+  componentWillMount() {
+    const plan_id = 1;
+    return fetch(`/api/plans/${plan_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: null,
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((rows) => {
+      console.log(rows.time);
+      this.setState({
+        value: rows.place,
+        time: `${rows.time.hour}:${rows.time.minute}`,
+      })
+    })
+    .catch((error) => {
+      console.log('Request Failed', error);
+    });
+  }
   componentDidUpdate() {
     const plan_id = 1;
     return fetch(`/api/plans/${plan_id}`, {
