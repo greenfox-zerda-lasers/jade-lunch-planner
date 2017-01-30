@@ -28,10 +28,10 @@ class App extends Component {
     .then((response) => {
       return response.json();
     })
-    .then((rows) => {
+    .then((row) => {
       this.setState({
-        value: rows.place,
-        time: `${rows.time.hour}:${rows.time.minute}`,
+        place: row.place.trim(),
+        time: `${row.time.hour}:${row.time.minute}`,
       })
     })
     .catch((error) => {
@@ -75,7 +75,7 @@ class App extends Component {
               id="location"
               type="text"
               placeholder="..."
-              value={this.state.value}
+              value={this.state.place}
               onChange={this.handleChange.bind(this)}
             />
           </label>
