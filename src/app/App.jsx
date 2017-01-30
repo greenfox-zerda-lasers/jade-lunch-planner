@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import validateHhMm from './time_validator';
 import './reset.scss';
 import './App.scss';
+
+
+const timezoneOffset = () => {
+  return new Date().getTimezoneOffset();
+}
 
 
 class App extends Component {
@@ -13,7 +17,6 @@ class App extends Component {
     };
   }
   componentDidUpdate() {
-    const timestamp = validateHhMm(this.state.time);
     const plan_id = 1;
     return fetch(`/api/plans/${plan_id}`, {
       method: 'PUT',
@@ -22,7 +25,8 @@ class App extends Component {
       },
       body: JSON.stringify({
         value: this.state.value,
-        time: timestamp,
+        time: this.state.time,
+        timezoneOffset: timezoneOffset(),
       })
     }).catch((error) => {
       console.error('Request Failed', error);
@@ -56,14 +60,13 @@ class App extends Component {
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
             <input
               id="setTime"
-              type="text"
+              type="time"
               placeholder="12:00"
               value={this.state.time}
               onChange={this.handleChange.bind(this)}
             />
           </label>
           <span>Edit to update plan</span>
-          <button type="submit">Post</button>
         </form>
       </article>
     );
