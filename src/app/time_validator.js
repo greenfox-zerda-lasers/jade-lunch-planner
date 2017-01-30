@@ -1,7 +1,14 @@
 'use strict';
 
+const lengthChecker = (number) => {
+  return number.toString().length == 2 ? number : '0' + number;
+ };
+
 
 module.exports = {
+  lengthChecker: (number) => {
+    return number.toString().length == 2 ? number : '0' + number;
+  },
   dateFormatter: (time, timezoneOffset) => {
     const today = new Date();
     const year = 1900 + today.getYear();
@@ -18,7 +25,13 @@ module.exports = {
     return lunchTimeUTC;
   },
   dateLocalizer: (time) => {
-    const hello = new Date(parseInt(time));
-    console.log(hello.toLocaleString());
+    const localTime = new Date(parseInt(time));
+    const localHour = lengthChecker(localTime.getHours());
+    const localMinute = lengthChecker(localTime.getMinutes());
+
+    return time = {
+      hour: localHour,
+      minute: localMinute,
+    };
   }
 };

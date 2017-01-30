@@ -92,6 +92,9 @@ article {
     @include user-input;
     margin-bottom: 25px;
   }
+  input[id=location-label]:focus {
+    text-align: left;
+  }
   input[id=setTime] {
     @include user-input;
     margin-bottom: 16px;

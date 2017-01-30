@@ -5,16 +5,38 @@ import './App.scss';
 
 const timezoneOffset = () => {
   return new Date().getTimezoneOffset();
-}
+};
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      place: '',
       time: '00:00',
     };
+  }
+  componentWillMount() {
+    const plan_id = 1;
+    return fetch(`/api/plans/${plan_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: null,
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((row) => {
+      this.setState({
+        place: row.place.trim(),
+        time: `${row.time.hour}:${row.time.minute}`,
+      });
+    })
+    .catch((error) => {
+      console.log('Request Failed', error);
+    });
   }
   componentDidUpdate() {
     const plan_id = 1;
@@ -24,7 +46,7 @@ class App extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        value: this.state.value,
+        place: this.state.place,
         time: this.state.time,
         timezoneOffset: timezoneOffset(),
       })
@@ -33,12 +55,12 @@ class App extends Component {
     });
   }
   handleChange(event) {
-    const location =  event.target.id === 'location' ?
-    event.target.value : this.state.value;
+    const location = event.target.id === 'location' ?
+    event.target.value : this.state.place;
     const time = event.target.id === 'setTime' ?
     event.target.value : this.state.time;
     this.setState({
-      value: location,
+      place: location,
       time: time,
     });
   }
@@ -53,7 +75,7 @@ class App extends Component {
               id="location"
               type="text"
               placeholder="..."
-              value={this.state.value}
+              value={this.state.place}
               onChange={this.handleChange.bind(this)}
             />
           </label>
