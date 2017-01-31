@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './reset.scss';
 import './App.scss';
 
-
-const timezoneOffset = () => {
-  return new Date().getTimezoneOffset();
-};
+const validator = require('./time_validator');
 
 
 class App extends Component {
@@ -28,10 +25,10 @@ class App extends Component {
     .then((response) => {
       return response.json();
     })
-    .then((row) => {
+    .then((plan) => {
       this.setState({
-        place: row.place.trim(),
-        time: `${row.time.hour}:${row.time.minute}`,
+        place: plan.place.trim(),
+        time: validator.toLocalTime(plan.time),
       });
     })
     .catch((error) => {
@@ -47,8 +44,7 @@ class App extends Component {
       },
       body: JSON.stringify({
         place: this.state.place,
-        time: this.state.time,
-        timezoneOffset: timezoneOffset(),
+        time: validator.toUTS(this.state.time),
       })
     }).catch((error) => {
       console.error('Request Failed', error);
