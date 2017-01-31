@@ -1,11 +1,6 @@
 'use strict';
 
 
-const lengthChecker = (number) => {
-  return number.toString().length == 2 ? number : '0' + number;
-};
-
-
 module.exports = {
   toUTS: (time) => {
     const today = new Date();
@@ -27,7 +22,7 @@ module.exports = {
     const localTime = new Date(parseInt(time))
       .toLocaleTimeString('en-GB', formatOptions);
 
-    const hour = lengthChecker(localTime.split(':', 1)[0]);
+    const hour = localTime.split(':', 1)[0];
     const minute = localTime.split(':', 2)[1];
 
     return `${hour}:${minute}`;
