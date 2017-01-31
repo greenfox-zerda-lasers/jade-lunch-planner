@@ -23,8 +23,9 @@ module.exports = {
     return lunchTimeUTS;
   },
   toLocalTime: (time) => {
+    const formatOptions = { minute: '2-digit', hour: '2-digit' };
     const localTime = new Date(parseInt(time))
-      .toLocaleTimeString();
+      .toLocaleTimeString('en-GB', formatOptions);
 
     const hour = lengthChecker(localTime.split(':', 1)[0]);
     const minute = localTime.split(':', 2)[1];
