@@ -1,0 +1,4 @@
+// PLAN ACTIONS
+const UPDATE_PLAN = 'UPDATE_PLAN';
+
+export default UPDATE_PLAN;
