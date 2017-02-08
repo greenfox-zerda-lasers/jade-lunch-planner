@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './app/App';
+import { render } from 'react-dom';
+import Root from './Root';
 
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+// entry point now rendering Root Component instead of 'App' (we changed it)
+
+render(
+  <Root title="LUNCH"/>,
+  document.querySelector('#root')
 );

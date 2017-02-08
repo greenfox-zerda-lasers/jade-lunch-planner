@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
+
 import './reset.scss';
 import './App.scss';
+
+import Input from '../components/Input';
+
 
 const validator = require('./time_validator');
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      place: '',
-      time: '00:00',
-    };
-  }
   componentWillMount() {
     const plan_id = 1;
     return fetch(`/api/plans/${plan_id}`, {
@@ -51,37 +51,34 @@ class App extends Component {
     });
   }
   handleChange(event) {
-    const location = event.target.id === 'location' ?
-    event.target.value : this.state.place;
-    const time = event.target.id === 'setTime' ?
-    event.target.value : this.state.time;
-    this.setState({
-      place: location,
-      time: time,
-    });
+    console.log(event.props.plan);
   }
+
   render() {
+    const { title } = this.props;
+    const { updatePlan } = this.props.actions;
+
     return (
       <article className="input-wrapper">
         <form onSubmit={this.handleSubmit}>
-          <img src={require('../imgs/a66-logo.png')} className="logo"/>
-          <h1>LUNCH</h1>
+          <img src={require("../imgs/a66-logo.png")} className="logo"/>
+          <h1>{title}</h1>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
-            <input
+            <Input {...this.props}
               id="location"
               type="text"
               placeholder="..."
-              value={this.state.place}
-              onChange={this.handleChange.bind(this)}
+              value={updatePlan.place}
+              planKey="place"
             />
           </label>
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
-            <input
+            <Input {...this.props}
               id="setTime"
               type="time"
-              placeholder="12:00"
-              value={this.state.time}
-              onChange={this.handleChange.bind(this)}
+              placeholder="00:00"
+              value={updatePlan.time}
+              planKey="time"
             />
           </label>
           <span>Edit to update plan</span>
@@ -92,4 +89,19 @@ class App extends Component {
 }
 
 
-export default App;
+App.propTypes = {
+  actions: React.PropTypes.object,
+  title: React.PropTypes.string.isRequired,
+};
+
+
+const mapStateProps = state => ({
+  plan: state.plan
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+});
+
+
+export default connect(mapStateProps, mapDispatchToProps)(App);
