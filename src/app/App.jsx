@@ -14,25 +14,28 @@ const validator = require('./time_validator');
 
 class App extends Component {
   componentWillMount() {
-    
+    const { fetchPlan } = this.props.actions;
+    fetchPlan(1);
+    // console.log(actionCreators.fetchPlan(1));
   }
   componentDidUpdate() {
-    const plan_id = 1;
-    return fetch(`/api/plans/${plan_id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        place: this.state.place,
-        time: validator.toUTS(this.state.time),
-      })
-    }).catch((error) => {
-      console.error('Request Failed', error);
-    });
+    console.log('updated');
+    // const plan_id = 1;
+    // return fetch(`/api/plans/${plan_id}`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     place: this.state.place,
+    //     time: validator.toUTS(this.state.time),
+    //   })
+    // }).catch((error) => {
+    //   console.error('Request Failed', error);
+    // });
   }
-  handleChange(event) {
-    console.log(event.props.plan);
+  onInputChange(event) {
+    console.log(event);
   }
 
   render() {
@@ -51,6 +54,7 @@ class App extends Component {
               placeholder="..."
               value={updatePlan.place}
               planKey="place"
+              onPlanChange={this.onInputChange}
             />
           </label>
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
@@ -60,6 +64,7 @@ class App extends Component {
               placeholder="00:00"
               value={updatePlan.time}
               planKey="time"
+              onPlanChange={this.onInputChange}
             />
           </label>
           <span>Edit to update plan</span>

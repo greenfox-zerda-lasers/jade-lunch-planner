@@ -8,14 +8,38 @@ export const requestPlan = payload => ({
   payload
 });
 
-export const loading = () => {
+export const isFetching = () => ({
   type: 'FETCH_PLANS_LOADING',
-  payload
-}
+  loading: true,
+});
 
-export const fetchPlan = () => {
+export const responseError = payload => ({
+  type: 'FETCH_PLANS_ERROR',
   payload
-}
+});
+
+export const fetchPlan = (plan_id, method='GET', body=null) => {
+  // console.log(dispatch);
+  return (dispatch) => {
+    console.log('belemegy-e');
+    return fetch(`/api/plans/${plan_id}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    }).then(response => {
+      // console.log(response);
+      return response.json();
+    }).then(plan => {
+      console.log(plan);
+      updatePlan(plan);
+    }).catch(error => {
+      console.log(error);
+      dispatch(responseError(error));
+    });
+  };
+};
 
 
 

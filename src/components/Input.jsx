@@ -10,7 +10,7 @@ const Input = (props) => (
     type={props.type}
     placeholder={props.placeholder}
     value={props.value}
-    onChange={(event) => props.actions.updatePlan({[props.planKey]: event.target.value})}
+    onChange={(event) => props.onPlanChange({[props.planKey]: event.target.value})}
   />
 );
 
@@ -21,7 +21,7 @@ Input.propTypes = {
   placeholder: React.PropTypes.string,
   value: React.PropTypes.any,
   planKey: React.PropTypes.string.isRequired,
-  actions: React.PropTypes.object.isRequired,
+  onPlanChange: React.PropTypes.func.isRequired,
 };
 
 

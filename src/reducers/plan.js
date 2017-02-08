@@ -1,9 +1,14 @@
-import UPDATE_PLAN from './actions';
+import {
+  UPDATE_PLAN,
+  FETCH_PLANS_ERROR,
+  FETCH_PLANS_LOADING,
+} from './actions';
 
 
 const initialState = {
   place: '',
-  time: '00:00'
+  time: '00:00',
+  loading: false,
 };
 
 const plan = (state = initialState, action) => {
@@ -11,8 +16,10 @@ const plan = (state = initialState, action) => {
   switch (type) {
     case UPDATE_PLAN:
       return Object.assign({}, state, payload);
-    case REQUEST_PLAN:
-      return Object.assign({}, state, payload);
+    case FETCH_PLANS_LOADING:
+      return console.log('loading');
+    case FETCH_PLANS_ERROR:
+      return console.log('error');
     default:
       return state;
   }
