@@ -1,4 +1,3 @@
 // PLAN ACTIONS
-const UPDATE_PLAN = 'UPDATE_PLAN';
-
-export default UPDATE_PLAN;
+export const UPDATE_PLAN = 'UPDATE_PLAN';
+export const REQUEST_PLAN = 'REQUEST_PLAN';

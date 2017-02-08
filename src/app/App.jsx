@@ -14,26 +14,7 @@ const validator = require('./time_validator');
 
 class App extends Component {
   componentWillMount() {
-    const plan_id = 1;
-    return fetch(`/api/plans/${plan_id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: null,
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((plan) => {
-      this.setState({
-        place: plan.place.trim(),
-        time: validator.toLocalTime(plan.time),
-      });
-    })
-    .catch((error) => {
-      console.log('Request Failed', error);
-    });
+    
   }
   componentDidUpdate() {
     const plan_id = 1;

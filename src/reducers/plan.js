@@ -11,6 +11,8 @@ const plan = (state = initialState, action) => {
   switch (type) {
     case UPDATE_PLAN:
       return Object.assign({}, state, payload);
+    case REQUEST_PLAN:
+      return Object.assign({}, state, payload);
     default:
       return state;
   }
