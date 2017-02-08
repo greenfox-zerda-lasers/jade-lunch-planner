@@ -57,18 +57,19 @@ class App extends Component {
   render() {
     const { title } = this.props;
     const { updatePlan } = this.props.actions;
+
     return (
       <article className="input-wrapper">
         <form onSubmit={this.handleSubmit}>
-          <img src={require('../imgs/a66-logo.png')} className="logo"/>
+          <img src={require("../imgs/a66-logo.png")} className="logo"/>
           <h1>{title}</h1>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
             <Input {...this.props}
               id="location"
               type="text"
-              placeholder='...'
+              placeholder="..."
               value={updatePlan.place}
-              planKey='place'
+              planKey="place"
             />
           </label>
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
@@ -77,7 +78,7 @@ class App extends Component {
               type="time"
               placeholder="00:00"
               value={updatePlan.time}
-              planKey='time'
+              planKey="time"
             />
           </label>
           <span>Edit to update plan</span>

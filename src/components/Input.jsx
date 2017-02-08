@@ -25,13 +25,4 @@ Input.propTypes = {
 };
 
 
-const mapStateProps = state => ({
-  plan: state.plan
-});
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
-});
-
-
-export default connect(mapStateProps, mapDispatchToProps)(Input);
+export default Input;
