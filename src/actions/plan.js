@@ -32,8 +32,7 @@ export const fetchPlan = (plan_id, method='GET', body=null) => {
       // console.log(response);
       return response.json();
     }).then(plan => {
-      console.log(plan);
-      updatePlan(plan);
+      dispatch(updatePlan(plan));
     }).catch(error => {
       console.log(error);
       dispatch(responseError(error));
