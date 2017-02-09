@@ -17,29 +17,18 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-
-    // const plan_id = 1;
-    // return fetch(`/api/plans/${plan_id}`, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     place: this.state.place,
-    //     time: validator.toUTS(this.state.time),
-    //   })
-    // }).catch((error) => {
-    //   console.error('Request Failed', error);
-    // });
+    const { updatePlan } = this.props.actions;
   }
+
   onChange(event) {
     const { updatePlan } = this.props.actions;
     updatePlan(event);
   }
 
   render() {
-    const { title } = this.props;
-    const { updatePlan } = this.props.actions;
+    const { title } = this.props,
+          { place, time } = this.props.plan,
+          { updatePlan } = this.props.actions;
 
     return (
       <article className="input-wrapper">
@@ -51,7 +40,7 @@ class App extends Component {
               id="location"
               type="text"
               placeholder="..."
-              value={this.props.plan.place}
+              value={place}
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
@@ -60,7 +49,7 @@ class App extends Component {
               id="setTime"
               type="time"
               placeholder="00:00"
-              value={updatePlan.time}
+              value={time}
               onChange={event => this.onChange({time: event.target.value})}
             />
           </label>

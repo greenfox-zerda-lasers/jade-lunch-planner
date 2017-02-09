@@ -5,6 +5,8 @@ import {
   REQUEST_PLAN_FAILURE,
 } from './actions';
 
+const validator = require('../app/time_validator');
+
 
 const initialState = {
   place: '',
@@ -22,7 +24,9 @@ const plan = (state = initialState, action) => {
         loading: true
       });
     case REQUEST_PLAN_SUCCESS:
-      return Object.assign({}, state, payload, {
+      return Object.assign({}, state, {
+        time: validator.toLocalTime(payload.time),
+        place: payload.place.trim(),
         loading: false,
       });
     case REQUEST_PLAN_FAILURE:
