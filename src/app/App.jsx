@@ -6,57 +6,29 @@ import * as actionCreators from '../actions';
 import './reset.scss';
 import './App.scss';
 
-import Input from '../components/Input';
-
 
 const validator = require('./time_validator');
 
 
 class App extends Component {
   componentWillMount() {
-    const plan_id = 1;
-    return fetch(`/api/plans/${plan_id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: null,
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((plan) => {
-      this.setState({
-        place: plan.place.trim(),
-        time: validator.toLocalTime(plan.time),
-      });
-    })
-    .catch((error) => {
-      console.log('Request Failed', error);
-    });
+    const { fetchPlan } = this.props.actions;
+    fetchPlan(1);
   }
+
   componentDidUpdate() {
-    const plan_id = 1;
-    return fetch(`/api/plans/${plan_id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        place: this.state.place,
-        time: validator.toUTS(this.state.time),
-      })
-    }).catch((error) => {
-      console.error('Request Failed', error);
-    });
+    const { updatePlan } = this.props.actions;
   }
-  handleChange(event) {
-    console.log(event.props.plan);
+
+  onChange(event) {
+    const { updatePlan } = this.props.actions;
+    updatePlan(event);
   }
 
   render() {
-    const { title } = this.props;
-    const { updatePlan } = this.props.actions;
+    const { title } = this.props,
+          { place, time } = this.props.plan,
+          { updatePlan } = this.props.actions;
 
     return (
       <article className="input-wrapper">
@@ -64,21 +36,21 @@ class App extends Component {
           <img src={require("../imgs/a66-logo.png")} className="logo"/>
           <h1>{title}</h1>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
-            <Input {...this.props}
+            <input
               id="location"
               type="text"
               placeholder="..."
-              value={updatePlan.place}
-              planKey="place"
+              value={place}
+              onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
           <label htmlFor="setTime">Current Lunch <b>Time</b> is
-            <Input {...this.props}
+            <input
               id="setTime"
               type="time"
               placeholder="00:00"
-              value={updatePlan.time}
-              planKey="time"
+              value={time}
+              onChange={event => this.onChange({time: event.target.value})}
             />
           </label>
           <span>Edit to update plan</span>
@@ -92,6 +64,7 @@ class App extends Component {
 App.propTypes = {
   actions: React.PropTypes.object,
   title: React.PropTypes.string.isRequired,
+  plan: React.PropTypes.object,
 };
 
 
