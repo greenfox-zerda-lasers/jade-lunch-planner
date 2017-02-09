@@ -1,7 +1,8 @@
 import {
   UPDATE_PLAN,
-  FETCH_PLANS_ERROR,
-  FETCH_PLANS_LOADING,
+  REQUEST_PLAN,
+  REQUEST_PLAN_SUCCESS,
+  REQUEST_PLAN_FAILURE,
 } from './actions';
 
 
@@ -15,17 +16,19 @@ const plan = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case UPDATE_PLAN:
-      return Object.assign({}, state,
-        Object.assign({}, payload, {
-          loading: false,
-        })
-      );
-    case FETCH_PLANS_LOADING:
+      return Object.assign({}, state, payload);
+    case REQUEST_PLAN:
       return Object.assign({}, state, {
-        loading: true,
+        loading: true
       });
-    case FETCH_PLANS_ERROR:
-      return console.log('error');
+    case REQUEST_PLAN_SUCCESS:
+      return Object.assign({}, state, payload, {
+        loading: false,
+      });
+    case REQUEST_PLAN_FAILURE:
+      return Object.assign({}, state, {
+        loading: false,
+      });
     default:
       return state;
   }

@@ -3,63 +3,35 @@ export const updatePlan = payload => ({
   payload
 });
 
-export const requestPlan = payload => ({
-  type: 'REQUEST_PLAN',
+export const requestPlan = () => ({
+  type: 'REQUEST_PLAN'
+});
+
+export const requestPlanSuccess = payload => ({
+  type: 'REQUEST_PLAN_SUCCESS',
   payload
 });
 
-export const isFetching = () => ({
-  type: 'FETCH_PLANS_LOADING'
+export const requestPlanFailure = () => ({
+  type: 'REQUEST_PLAN_FAILURE',
 });
 
-export const responseError = payload => ({
-  type: 'FETCH_PLANS_ERROR',
-  payload
-});
 
-export const fetchPlan = (plan_id, method='GET', body=null) => {
+export const fetchPlan = (plan_id) => {
   return (dispatch) => {
-    dispatch(isFetching());
+    dispatch(requestPlan());
     return fetch(`/api/plans/${plan_id}`, {
-      method,
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body,
+      body: null
     }).then(response => {
       return response.json();
     }).then(plan => {
-      dispatch(updatePlan(plan));
+      dispatch(requestPlanSuccess(plan));
     }).catch(error => {
-      console.log(error);
-      dispatch(responseError(error));
+      dispatch(requestPlanFailure());
     });
   };
 };
-
-
-
-
-// const fetchPlan = payload => {
-//   const plan_id = 1;
-//   return;
-//   fetch(`/api/plans/${plan_id}`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: null,
-//   })
-//   .then((response) => {
-//     return response.json();
-//   });
-//   .then((plan) => {
-//     this.setState({
-//       place: plan.place.trim(),
-//       time: validator.toLocalTime(plan.time),
-//     });
-//   });
-//   .catch((error) => {
-//     console.log('Request Failed', error);
-//   });
-// };
