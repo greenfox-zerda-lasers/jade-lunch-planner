@@ -2,7 +2,7 @@
 
 
 module.exports = {
-  toUTS: (time) => {
+  toUTS: time => {
     const today = new Date();
     const year = 1900 + today.getYear();
     const month = today.getMonth();
@@ -17,13 +17,13 @@ module.exports = {
 
     return lunchTimeUTS;
   },
-  toLocalTime: (time) => {
-    const formatOptions = { minute: '2-digit', hour: '2-digit' };
-    const localTime = new Date(parseInt(time))
+  toLocalTime: time => {
+    const formatOptions = { minute: '2-digit', hour: '2-digit' },
+          localTime = new Date(parseInt(time))
       .toLocaleTimeString('en-GB', formatOptions);
 
-    const hour = localTime.split(':', 1)[0];
-    const minute = localTime.split(':', 2)[1];
+    const hour = localTime.split(':', 1)[0],
+          minute = localTime.split(':', 2)[1];
 
     return `${hour}:${minute}`;
   }
