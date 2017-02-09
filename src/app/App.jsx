@@ -19,7 +19,7 @@ class App extends Component {
     // console.log(actionCreators.fetchPlan(1));
   }
   componentDidUpdate() {
-    console.log('updated');
+
     // const plan_id = 1;
     // return fetch(`/api/plans/${plan_id}`, {
     //   method: 'PUT',
@@ -35,11 +35,12 @@ class App extends Component {
     // });
   }
   onInputChange(event) {
-    console.log(event);
+    console.log('onInputChange');
   }
 
   render() {
     const { title } = this.props;
+    const { place } = this.props.plan;
     const { updatePlan } = this.props.actions;
 
     return (

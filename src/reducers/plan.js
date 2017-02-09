@@ -15,9 +15,15 @@ const plan = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case UPDATE_PLAN:
-      return Object.assign({}, state, payload);
+      return Object.assign({}, state,
+        Object.assign({}, payload, {
+          loading: false,
+        })
+      )
     case FETCH_PLANS_LOADING:
-      return console.log('loading');
+      return Object.assign({}, state, {
+        loading: true,
+      });
     case FETCH_PLANS_ERROR:
       return console.log('error');
     default:

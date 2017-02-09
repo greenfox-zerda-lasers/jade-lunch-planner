@@ -9,8 +9,7 @@ export const requestPlan = payload => ({
 });
 
 export const isFetching = () => ({
-  type: 'FETCH_PLANS_LOADING',
-  loading: true,
+  type: 'FETCH_PLANS_LOADING'
 });
 
 export const responseError = payload => ({
@@ -19,9 +18,8 @@ export const responseError = payload => ({
 });
 
 export const fetchPlan = (plan_id, method='GET', body=null) => {
-  // console.log(dispatch);
   return (dispatch) => {
-    console.log('belemegy-e');
+    dispatch(isFetching());
     return fetch(`/api/plans/${plan_id}`, {
       method,
       headers: {
@@ -29,7 +27,6 @@ export const fetchPlan = (plan_id, method='GET', body=null) => {
       },
       body,
     }).then(response => {
-      // console.log(response);
       return response.json();
     }).then(plan => {
       dispatch(updatePlan(plan));
