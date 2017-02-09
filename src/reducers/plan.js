@@ -19,7 +19,7 @@ const plan = (state = initialState, action) => {
         Object.assign({}, payload, {
           loading: false,
         })
-      )
+      );
     case FETCH_PLANS_LOADING:
       return Object.assign({}, state, {
         loading: true,
