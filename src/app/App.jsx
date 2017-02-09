@@ -5,9 +5,10 @@ import * as actionCreators from '../actions';
 
 import './reset.scss';
 import './App.scss';
+import { timezoneOffset } from './time_validator';
 
 
-const validator = require('./time_validator');
+const tzOffset = timezoneOffset();
 
 
 class App extends Component {
@@ -16,19 +17,20 @@ class App extends Component {
     fetchPlan(1);
   }
 
-  componentDidUpdate() {
-    const { updatePlan } = this.props.actions;
-  }
+  // componentDidUpdate() {
+  // }
 
   onChange(event) {
-    const { updatePlan } = this.props.actions;
+    const { updatePlan, fetchUpdatePlan } = this.props.actions,
+          { plan } = this.props;
+
     updatePlan(event);
+    fetchUpdatePlan(1, Object.assign(plan, event), tzOffset);
   }
 
   render() {
     const { title } = this.props,
-          { place, time } = this.props.plan,
-          { updatePlan } = this.props.actions;
+          { place, time } = this.props.plan;
 
     return (
       <article className="input-wrapper">

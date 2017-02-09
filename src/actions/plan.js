@@ -1,3 +1,6 @@
+import { toUTS } from '../app/time_validator';
+
+
 export const updatePlan = payload => ({
   type: 'UPDATE_PLAN',
   payload
@@ -37,22 +40,20 @@ export const fetchPlan = plan_id => {
 };
 
 
-// export const fetchUpdatePlan = plan_id => {
-//   return dispatch => {
-//     dispatch(requestPlan());
-//     return fetch()
-//   }
-// };
-// const plan_id = 1;
-// return fetch(`/api/plans/${plan_id}`, {
-//   method: 'PUT',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     place: this.state.place,
-//     time: validator.toUTS(this.state.time),
-//   })
-// }).catch((error) => {
-//   console.error('Request Failed', error);
-// });
+export const fetchUpdatePlan = (plan_id, plan, timezoneOffset) => {
+  return dispatch => {
+    dispatch(requestPlan());
+    return fetch(`/api/plans/${plan_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        place: plan.place,
+        time: toUTS(plan.time, timezoneOffset),
+      })
+    }).catch((error) => {
+      console.error('Request Failed', error);
+    });
+  };
+};
