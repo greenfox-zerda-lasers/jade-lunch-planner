@@ -54,6 +54,7 @@ export const fetchUpdatePlan = (plan_id, plan, timezoneOffset) => {
       })
     }).catch((error) => {
       console.error('Request Failed', error);
+      dispatch(requestPlanFailure());
     });
   };
 };

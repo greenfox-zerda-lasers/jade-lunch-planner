@@ -24,8 +24,8 @@ class App extends Component {
     const { updatePlan, fetchUpdatePlan } = this.props.actions,
           { plan } = this.props;
 
-    updatePlan(event);
     fetchUpdatePlan(1, Object.assign(plan, event), tzOffset);
+    updatePlan(event);
   }
 
   render() {

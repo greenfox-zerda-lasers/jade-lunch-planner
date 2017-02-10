@@ -18,7 +18,9 @@ const plan = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case UPDATE_PLAN:
-      return Object.assign({}, state, payload);
+      return Object.assign({}, state, payload, {
+        loading: false
+      });
     case REQUEST_PLAN:
       return Object.assign({}, state, {
         loading: true
