@@ -19,7 +19,7 @@ export const toUTS = (time, timezoneOffset) => {
   const lunchTimeLocale = new Date(
     year, month, day, hour, min);
 
-  const lunchTimeUTS = lunchTimeLocale.getTime() - (timezoneOffset * 60000);
+  const lunchTimeUTS = lunchTimeLocale.getTime() + (timezoneOffset * 60000);
 
   return lunchTimeUTS;
 };
