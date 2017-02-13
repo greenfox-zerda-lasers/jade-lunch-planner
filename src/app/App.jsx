@@ -1,24 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../actions';
 
+import * as actionCreators from '../actions';
 import './reset.scss';
 import './App.scss';
-import SearchPlace from '../components/search_place';
-import CurrentPlanList from '../components/current_plans';
+import SearchPlace from '../components/searchPlace';
+import PlanList from '../components/planList';
 
 
 class App extends Component {
+  componentDidMount() {
+    const { fetchPlan } = this.props.actions;
+    fetchPlan();
+  }
+
   render() {
+    const { plans } = this.props.planList;
+
     return (
       <div>
         <SearchPlace {...this.props} />
-        <CurrentPlanList {...this.props} />
+        <PlanList plans={plans} />
       </div>
     );
   }
 }
 
 
-export default App;
+App.propTypes = {
+  actions: React.PropTypes.object,
+  planList: React.PropTypes.object,
+};
+
+const mapStateProps = state => ({
+  planList: state.planList
+});
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actionCreators, dispatch)
+});
+
+
+export default connect(mapStateProps, mapDispatchToProps)(App);

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import plan from './plan';
+import planList from './plan';
 
 
 export default combineReducers({
-  plan
+  planList
 });

@@ -12,7 +12,9 @@ export const requestPlan = () => ({
 
 export const requestPlanSuccess = payload => ({
   type: 'REQUEST_PLAN_SUCCESS',
-  payload
+  payload: {
+    plans: payload
+  }
 });
 
 export const requestPlanFailure = () => ({
@@ -20,10 +22,10 @@ export const requestPlanFailure = () => ({
 });
 
 
-export const fetchPlan = plan_id => {
+export const fetchPlan = () => {
   return dispatch => {
     dispatch(requestPlan());
-    return fetch(`/api/plans/${plan_id}`, {
+    return fetch(`/api/plans`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

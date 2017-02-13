@@ -10,11 +10,6 @@ const tzOffset = timezoneOffset();
 
 
 class SearchPlace extends Component {
-  componentWillMount() {
-    const { fetchPlan } = this.props.actions;
-    fetchPlan(1);
-  }
-
   onChange(event) {
     const { updatePlan, fetchUpdatePlan } = this.props.actions,
           { plan } = this.props;
@@ -23,8 +18,7 @@ class SearchPlace extends Component {
     fetchUpdatePlan(1, plan, tzOffset);
   }
   render() {
-    const { title } = this.props,
-          { place, time } = this.props.plan;
+    const { title } = this.props;
 
     return (
       <article className="input-wrapper">
@@ -36,7 +30,7 @@ class SearchPlace extends Component {
               id="location"
               type="text"
               placeholder="..."
-              value={place}
+              value=''
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
@@ -45,7 +39,7 @@ class SearchPlace extends Component {
               id="setTime"
               type="time"
               placeholder="00:00"
-              value={time}
+              value=''
               onChange={event => this.onChange({time: event.target.value})}
             />
           </label>
@@ -59,7 +53,7 @@ class SearchPlace extends Component {
 
 SearchPlace.propTypes = {
   actions: React.PropTypes.object,
-  title: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string,
   plan: React.PropTypes.object,
 };
 
