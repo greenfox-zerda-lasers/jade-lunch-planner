@@ -61,7 +61,7 @@ class SearchPlace extends Component {
             />
           </label>
           <span>Edit to update plan</span>
-          <button type="submit">Send</button>
+          <button type="submit">Save</button>
         </form>
       </div>
     );
