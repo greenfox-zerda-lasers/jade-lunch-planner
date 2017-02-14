@@ -28,7 +28,6 @@ export const toUTS = (time, timezoneOffset) => {
 export const toLocalTime = (time, tzOffset) => {
   const formatOptions = { minute: '2-digit', hour: '2-digit' },
         localOffset = timezoneOffset();
-  console.log(localOffset);
 
   const today = new Date(),
         year = 1900 + today.getYear(),
@@ -42,9 +41,6 @@ export const toLocalTime = (time, tzOffset) => {
         newUTS = newDate.getTime();
 
   const validTime = new Date(newUTS + (tzOffset * 60000) - (localOffset * 60000)).toLocaleTimeString('en-GB', formatOptions);
-
-  console.log(newDate);
-  console.log(localOffset);
 
   const hour = validTime.split(':', 1)[0],
         minute = validTime.split(':', 2)[1];
