@@ -5,8 +5,6 @@ import {
   REQUEST_PLAN_FAILURE,
 } from './actions';
 
-import { toLocalTime } from '../app/time_validator';
-
 
 const initialState = {
   plans: [],

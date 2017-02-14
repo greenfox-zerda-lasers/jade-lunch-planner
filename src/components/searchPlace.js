@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions';
 
-import { timezoneOffset } from '../app/time_validator';
-
-
-const tzOffset = timezoneOffset();
-
 
 class SearchPlace extends Component {
   onChange(event) {
@@ -15,7 +10,7 @@ class SearchPlace extends Component {
           { plan } = this.props;
 
     updatePlan(event);
-    fetchUpdatePlan(1, plan, tzOffset);
+    // fetchUpdatePlan(1, plan, tzOffset);
   }
   render() {
     const { title } = this.props;

@@ -16,7 +16,8 @@ const db = pg(process.env.DATABASE_URL || localDb);
 
 app.get('/api/plans', (req, res) => {
   const query =
-  `SELECT * FROM plans`;
+  `SELECT * FROM plans
+  ORDER BY plan_id ASC`;
   db.any(query)
   .then((dbResponse) => {
     res.json(dbResponse);

@@ -1,6 +1,3 @@
-import { toUTS } from '../app/time_validator';
-
-
 export const updatePlan = payload => ({
   type: 'UPDATE_PLAN',
   payload
@@ -52,7 +49,7 @@ export const fetchUpdatePlan = (plan_id, plan, timezoneOffset) => {
       },
       body: JSON.stringify({
         place: plan.place,
-        time: toUTS(plan.time, timezoneOffset),
+        time: plan.time,
       })
     }).catch((error) => {
       console.error('Request Failed', error);
