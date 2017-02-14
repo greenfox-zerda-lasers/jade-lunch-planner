@@ -14,13 +14,12 @@ const localDb = 'postgres://jade@127.0.0.1:5432/lunch_planner';
 const db = pg(process.env.DATABASE_URL || localDb);
 
 
-app.get('/api/plans/:plan_id', (req, res) => {
+app.get('/api/plans', (req, res) => {
   const query =
-  `SELECT time, place FROM plans
-  WHERE plan_id = ${req.params.plan_id}`;
+  `SELECT * FROM plans`;
   db.any(query)
   .then((dbResponse) => {
-    res.json(dbResponse[0]);
+    res.json(dbResponse);
   })
   .catch((error) => {
     res.status(500).json({error: error.message});

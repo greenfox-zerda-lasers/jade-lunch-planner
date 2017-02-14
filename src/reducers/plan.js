@@ -9,12 +9,11 @@ import { toLocalTime } from '../app/time_validator';
 
 
 const initialState = {
-  place: '',
-  time: '00:00',
+  plans: [],
   loading: false,
 };
 
-const plan = (state = initialState, action) => {
+const planList = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case UPDATE_PLAN:
@@ -26,9 +25,7 @@ const plan = (state = initialState, action) => {
         loading: true
       });
     case REQUEST_PLAN_SUCCESS:
-      return Object.assign({}, state, {
-        time: toLocalTime(payload.time),
-        place: payload.place.trim(),
+      return Object.assign({}, state, payload, {
         loading: false,
       });
     case REQUEST_PLAN_FAILURE:
@@ -41,4 +38,4 @@ const plan = (state = initialState, action) => {
 };
 
 
-export default plan;
+export default planList;
