@@ -3,7 +3,6 @@ const express = require('express');
 const pg = require('pg-promise')();
 const bodyParser = require('body-parser');
 
-
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -21,11 +20,28 @@ app.get('/api/plans', (req, res) => {
   db.any(query)
   .then((dbResponse) => {
     res.json(dbResponse);
-  })
-  .catch((error) => {
+  }).catch((error) => {
     res.status(500).json({error: error.message});
   });
 });
+
+
+app.post('/api/plans', (req, res) => {
+  const query = {
+    text: `INSERT INTO plans (place, time, timezone_offset)
+    VALUES ($1, $2, $3)
+    RETURNING plan_id, place, time, timezone_offset`,
+    values: [req.body.place, req.body.time, req.body.timezone_offset]
+  };
+  db.one(query)
+    .then((dbResponse) => {
+      console.log(dbResponse);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    });
+});
+
 
 app.put('/api/plans/:plan_id', (req, res) => {
   const query =

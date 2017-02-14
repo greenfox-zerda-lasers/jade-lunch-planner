@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as actionCreators from '../actions';
+import { timezoneOffset } from '../app/timeValidator';
+
+
+const timezone_offset = timezoneOffset();
 
 
 class SearchPlace extends Component {
@@ -11,6 +16,7 @@ class SearchPlace extends Component {
     this.state = {
       place: '',
       time: '12:00',
+      timezone_offset,
     };
   }
 
@@ -22,9 +28,12 @@ class SearchPlace extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
+    this.props.actions.fetchNewPlan(this.state);
+
     this.setState({
       place: '',
       time: '12:00',
+      timezone_offset,
     });
   }
 
@@ -40,7 +49,7 @@ class SearchPlace extends Component {
               id="location"
               type="text"
               placeholder="Sushi Time"
-              value={this.state.restaurant}
+              value={this.state.place}
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
@@ -48,7 +57,7 @@ class SearchPlace extends Component {
             <input
               id="setTime"
               type="time"
-              value={this.state.mealTime}
+              value={this.state.time}
               onChange={event => this.onChange({time: event.target.value})}
             />
           </label>
