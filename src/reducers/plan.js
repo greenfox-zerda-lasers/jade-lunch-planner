@@ -23,7 +23,11 @@ const planList = (state = initialState, action) => {
         loading: true
       });
     case REQUEST_PLAN_SUCCESS:
-      return Object.assign({}, state, payload, {
+      return Object.assign({}, state, { plans: [
+        ...state.plans,
+        ...payload
+      ]},
+      {
         loading: false,
       });
     case REQUEST_PLAN_FAILURE:

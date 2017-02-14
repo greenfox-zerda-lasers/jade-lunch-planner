@@ -16,7 +16,7 @@ const db = pg(process.env.DATABASE_URL || localDb);
 app.get('/api/plans', (req, res) => {
   const query =
   `SELECT * FROM plans
-  ORDER BY plan_id ASC`;
+  ORDER BY plan_id DESC`;
   db.any(query)
   .then((dbResponse) => {
     res.json(dbResponse);
@@ -35,7 +35,7 @@ app.post('/api/plans', (req, res) => {
   };
   db.one(query)
     .then((dbResponse) => {
-      console.log(dbResponse);
+      res.json(dbResponse);
     }).catch((error) => {
       console.log(error);
       res.status(500).json({ error: error.message });
@@ -52,7 +52,7 @@ app.put('/api/plans/:plan_id', (req, res) => {
     RETURNING plan_id, time`;
   db.one(query)
     .then((dbResponse) => {
-      res.json({ status: 'ok', id: dbResponse.plan_id });
+      res.json({ status: 'Ok', id: dbResponse.plan_id });
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });

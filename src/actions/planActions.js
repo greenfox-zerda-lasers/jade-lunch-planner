@@ -9,9 +9,7 @@ export const requestPlan = () => ({
 
 export const requestPlanSuccess = payload => ({
   type: 'REQUEST_PLAN_SUCCESS',
-  payload: {
-    plans: payload
-  }
+  payload
 });
 
 export const requestPlanFailure = () => ({
@@ -32,8 +30,8 @@ export const fetchPlan = () => {
       body: null
     }).then(response => {
       return response.json();
-    }).then(plan => {
-      dispatch(requestPlanSuccess(plan));
+    }).then(plans => {
+      dispatch(requestPlanSuccess(plans));
     }).catch(error => {
       dispatch(requestPlanFailure());
     });
@@ -42,7 +40,6 @@ export const fetchPlan = () => {
 
 
 export const fetchNewPlan = plan => {
-  console.log(plan);
   return dispatch => {
     dispatch(requestPlan());
     return fetch('/api/plans', {
@@ -58,7 +55,7 @@ export const fetchNewPlan = plan => {
     }).then(response => {
       return response.json();
     }).then(plan => {
-      dispatch(requestPlanSuccess());
+      dispatch(requestPlanSuccess([ plan ]));
     }).catch(error => {
       dispatch(requestPlanFailure());
     });

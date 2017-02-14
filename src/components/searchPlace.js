@@ -21,7 +21,6 @@ class SearchPlace extends Component {
   }
 
   onChange(event) {
-    console.log(event);
     this.setState(Object.assign(this.state, event));
   }
 
