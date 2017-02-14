@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 class PlanItem extends Component {
   render() {
     return (
-      <li>
-        <h1>{this.props.place}</h1>
-        <h2>{this.props.time}</h2>
+      <li className="plan-box">
+        <h1><span>PLACE:</span> {this.props.place}</h1>
+        <h2><span>TIME:</span> {this.props.time}</h2>
       </li>
     );
   }

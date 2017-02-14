@@ -20,7 +20,7 @@ class PlanList extends Component {
     });
 
     return (
-      <div>
+      <div className="plan-list col-sm-12 col-md-6">
         <ul>
           {plans}
         </ul>

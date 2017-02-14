@@ -19,7 +19,7 @@ class App extends Component {
     const { plans } = this.props.planList;
 
     return (
-      <div>
+      <div className="container container-fluid row col-md-12">
         <SearchPlace {...this.props} />
         <PlanList plans={plans} />
       </div>

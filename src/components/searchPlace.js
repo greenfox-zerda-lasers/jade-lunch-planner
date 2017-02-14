@@ -21,16 +21,16 @@ class SearchPlace extends Component {
     const { title } = this.props;
 
     return (
-      <article className="input-wrapper">
-        <form onSubmit={this.handleSubmit}>
+      <div className="input-wrapper col-sm-12 col-md-6">
+        <form
+          onSubmit={this.handleSubmit}
+          className="col-md-12">
           <img src={require("../imgs/a66-logo.png")} className="logo"/>
-          <h1>{title}</h1>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
             <input
               id="location"
               type="text"
-              placeholder="..."
-              value=''
+              placeholder="Sushi Time"
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
@@ -39,13 +39,12 @@ class SearchPlace extends Component {
               id="setTime"
               type="time"
               placeholder="00:00"
-              value=''
               onChange={event => this.onChange({time: event.target.value})}
             />
           </label>
           <span>Edit to update plan</span>
         </form>
-      </article>
+      </div>
     );
   }
 }
