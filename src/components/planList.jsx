@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import PlanItem from './planItem';
+import { toLocalTime } from '../app/timeValidator';
 
 
 class PlanList extends Component {
@@ -10,11 +11,13 @@ class PlanList extends Component {
     }
 
     const plans = this.props.plans.map(plan => {
+      const time = toLocalTime(plan.time, plan.timezone_offset);
+
       return (
         <PlanItem
           key={plan.plan_id}
           place={plan.place}
-          time={plan.time}
+          time={time}
         />
       );
     });
