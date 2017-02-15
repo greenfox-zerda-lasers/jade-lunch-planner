@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT|Oswald:400,700');
 
 $green: rgba(126, 211, 33, .9);
+$pink: #f48f8f;
 
 @mixin title {
   font-size: 22px;
@@ -19,6 +20,34 @@ $green: rgba(126, 211, 33, .9);
   text-align: center;
   color: #360033;
 }
+
+
+// button mixins
+@mixin button-props {
+  height: 3.3rem;
+  padding: 15px;
+  font-size: 1.6rem;
+  background: $pink;
+  color: #222;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(56, 56, 56, .5);
+  transition: background .3s ease;
+}
+
+@mixin button-hover {
+  background: #f15555;
+}
+
+@mixin button-active {
+  transform: translateX(1px) translateY(1px);
+  box-shadow: 1px 1px 2px rgba(56, 56, 56, .5);
+}
+
+@mixin button-focus {
+  outline: none;
+}
+
+
 
 html {
   -webkit-box-sizing: border-box;
@@ -63,17 +92,21 @@ body {
 
 .input-wrapper {
   max-width: 45%;
-  height: 380px;
   padding: 2rem;
   background: $green;
+  align-self: flex-start;
   input {
     width: 100%;
-    height: 5.2rem;
-    margin-bottom: 1.4rem;
+    height: 4rem;
+    margin-bottom: .4rem;
+    padding-left: 10px;
     font-family: Oswald;
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-weight: bold;
-    text-align: center;
+  }
+  input[type="time"] {
+    width: 10rem;
+    margin-right: 20px;
   }
   label {
     width: 100%;
@@ -87,15 +120,36 @@ body {
   label[id=location-label] {
     text-align: right;
   }
-  span {
-    @include title;
-    text-align: right;
-    font-family: Old Standard TT;
+  .set-time-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    button {
+      height: 3rem;
+      font-size: 2rem;
+      @include button-props
+    }
+    button:hover {
+      @include button-hover;
+    }
+    button:focus {
+      @include button-focus;
+    }
+    button:active {
+      @include button-active;
+    }
   }
 }
 
 
 // right part, list of restaurants
+.plan-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 0;
+}
 
 .plan-list {
   max-width: 45%;
@@ -109,32 +163,41 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, rgba(126,211,33,.9) 0%,rgba(126,211,33,.9) 91%,rgba(126,211,33,0) 91%,rgba(126,211,33,0) 100%);
+  background: linear-gradient(135deg, rgba(126,211,33,.9) 0%,rgba(126,211,33,.9) 92%,rgba(126,211,33,0) 92%,rgba(126,211,33,0) 100%);
   padding: 20px;
-  padding-right: 10px;
+  padding-right: 5px;
   margin-bottom: 20px;
+  border-top: 2px solid #222;
   font-size: 1.6rem;
   button {
-    padding: 15px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: #f48f8f;
-    color: #222;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px rgba(56, 56, 56, .5);
-    transition: background .3s ease;
+    align-self: flex-end;
+    @include button-props;
   }
   button:hover {
-    background: #f15555;
+    @include button-hover;
   }
   button:focus {
-    outline: none;
+    @include button-focus;
   }
   button:active {
-    left: 1px;
-    bottom: -1px;
-    box-shadow: 1px 1px 2px rgba(56, 56, 56, .5);
+    @include button-active;
+  }
+  .delete {
+    position: absolute;
+    width: 15px;
+    top: -15px;
+    left: -15px;
+    background: #fff;
+    border-radius: 50%;
+    transition: all .3s ease;
+  }
+  .delete:hover {
+    width: 19px;
+    background: #f15555;
+    transform: rotateZ(180deg);
+  }
+  .delete:active {
+    transform: scale(.9) rotateZ(180deg);
   }
 }
 
@@ -167,7 +230,7 @@ body {
 }
 .place-box {
   input[type="text"] {
-    width: 330px;
+    width: 100%;
   }
 }
 .time-box {
@@ -184,72 +247,3 @@ body {
     font-size: 3rem;
   }
 }
-
-
-
-
-
-//
-// .app {
-//   display: flex;
-//   flex-direction: row;
-// }
-//
-// article {
-//   padding: 71px 30px 0;
-//   background: rgba(126, 211, 33, .9);
-//   font-family: Old Standard TT;
-//   font-size: 22px;
-//   text-align: left;
-//   color: #360033;
-//
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     position: relative;
-//   }
-//   h1 {
-//     position: absolute;
-//     width: 342px;
-//     height: 184px;
-//     bottom: 352px;
-//     left: 150px;
-//     font-family: Oswald;
-//     font-size: 124px;
-//     font-weight: bold;
-//     font-style: normal;
-//     font-stretch: normal;
-//     line-height: normal;
-//     letter-spacing: normal;
-//     text-align: left;
-//     color: #000000;
-//     text-shadow: 10px 10px 0 #f8e81c;
-//   }
-//   label {
-//     @include title;
-//     b {
-//       padding: 8px 1px;
-//       background: #f8e81c;
-//       font-weight: normal;
-//     }
-//   }
-//   label[id=location-label] {
-//     text-align: right;
-//   }
-//   input[id=location] {
-//     @include user-input;
-//     margin-bottom: 25px;
-//   }
-//   input[id=location-label]:focus {
-//     text-align: left;
-//   }
-//   input[id=setTime] {
-//     @include user-input;
-//     margin-bottom: 16px;
-//   }
-//   span {
-//     @include title;
-//     text-align: right;
-//     font-family: Old Standard TT;
-//   }
-// }

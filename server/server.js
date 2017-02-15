@@ -18,9 +18,9 @@ app.get('/api/plans', (req, res) => {
   `SELECT * FROM plans
   ORDER BY plan_id DESC`;
   db.any(query)
-  .then((dbResponse) => {
+  .then(dbResponse => {
     res.json(dbResponse);
-  }).catch((error) => {
+  }).catch(error => {
     res.status(500).json({error: error.message});
   });
 });
@@ -34,9 +34,9 @@ app.post('/api/plans', (req, res) => {
     values: [req.body.place, req.body.time, req.body.timezone_offset]
   };
   db.one(query)
-    .then((dbResponse) => {
+    .then(dbResponse => {
       res.json(dbResponse);
-    }).catch((error) => {
+    }).catch(error => {
       console.log(error);
       res.status(500).json({ error: error.message });
     });
@@ -47,14 +47,15 @@ app.put('/api/plans/:plan_id', (req, res) => {
   const query =
     `UPDATE plans
     SET place = '${req.body.place}',
-    time = '${req.body.time}'
+    time = '${req.body.time}',
+    timezone_offset = '${req.body.timezone_offset}'
     WHERE plan_id = ${req.params.plan_id}
-    RETURNING plan_id, time`;
+    RETURNING *`;
   db.one(query)
-    .then((dbResponse) => {
-      res.json({ status: 'Ok', id: dbResponse.plan_id });
-    })
-    .catch((error) => {
+    .then(dbResponse => {
+      console.log(dbResponse);
+      res.json(dbResponse);
+    }).catch(error => {
       res.status(500).json({ error: error.message });
     });
 });

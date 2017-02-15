@@ -21,7 +21,8 @@ class SearchPlace extends Component {
   }
 
   onChange(event) {
-    this.setState(Object.assign(this.state, event));
+
+    // this.setState(Object.assign(this.state, event));
   }
 
   onFormSubmit(event) {
@@ -45,23 +46,20 @@ class SearchPlace extends Component {
           <img src={require("../imgs/a66-logo.png")} className="logo"/>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
             <input
-              id="location"
               type="text"
-              placeholder="Sushi Time"
+              placeholder="Search Place"
               value={this.state.place}
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
-          <label htmlFor="setTime">Current Lunch <b>Time</b> is
+          <div className="set-time-wrapper">
             <input
-              id="setTime"
               type="time"
-              value={this.state.time}
-              onChange={event => this.onChange({time: event.target.value})}
+              value={this.state.place}
+              onChange={event => this.onChange({place: event.target.value})}
             />
-          </label>
-          <span>Edit to update plan</span>
-          <button type="submit">Save</button>
+            <button type="submit">Save</button>
+          </div>
         </form>
       </div>
     );
@@ -75,9 +73,13 @@ SearchPlace.propTypes = {
   plan: React.PropTypes.object,
 };
 
+const mapStateProps = state => ({
+  plan: state.plan
+});
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
 
-export default connect(mapDispatchToProps)(SearchPlace);
+export default connect(mapStateProps, mapDispatchToProps)(SearchPlace);

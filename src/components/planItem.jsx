@@ -44,25 +44,26 @@ class PlanItem extends Component {
       <div className="plan-box">
         <form
           onSubmit={this.onFormSubmit.bind(this)}
-          className="col-md-12">
-          <div className="place-box">
-            <input
-              id="location"
-              type="text"
-              maxLength="20"
-              value={this.state.place}
-              onChange={event => this.onChange({place: event.target.value})} />
-            <img src={require("../imgs/restaurant.png")} />
-          </div>
-          <div className="time-box">
-            <input
-              id="setTime"
-              type="time"
-              value={this.state.time}
-              onChange={event => this.onChange({time: event.target.value})} />
-            <img src={require("../imgs/clock.png")} />
-          </div>
+          className="plan-form col-md-12">
+          <img className="delete" src={require("../imgs/delete.png")} />
           <button type="submit">Update</button>
+          <div className="plan-container">
+            <div className="place-box">
+              <input
+                type="text"
+                maxLength="20"
+                value={this.state.place}
+                onChange={event => this.onChange({place: event.target.value})} />
+              <img src={require("../imgs/restaurant.png")} />
+            </div>
+            <div className="time-box">
+              <input
+                type="time"
+                value={this.state.time}
+                onChange={event => this.onChange({time: event.target.value})} />
+              <img src={require("../imgs/clock.png")} />
+            </div>
+          </div>
         </form>
       </div>
     );

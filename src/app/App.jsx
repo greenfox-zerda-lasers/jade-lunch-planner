@@ -19,9 +19,9 @@ class App extends Component {
     // const { plans } = this.props.planList;
 
     const plans = [
-      {plan_id:1, place:'hello bello szia szevasz', time:'12:32', timezone_offset:-60},
-      {plan_id:2, place:'hello', time:'12:32', timezone_offset:-60},
-      {plan_id:3, place:'hello', time:'12:32', timezone_offset:-60},
+      {plan_id:1, place:'Szarvas Bar', time:'12:32', timezone_offset:-60},
+      {plan_id:2, place:'Bodza Tatt', time:'12:32', timezone_offset:-60},
+      {plan_id:3, place:'Hulla 120 Rt.', time:'12:32', timezone_offset:-60},
     ];
 
     return (
