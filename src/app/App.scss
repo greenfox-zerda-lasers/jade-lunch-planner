@@ -54,7 +54,7 @@ body {
   justify-content: space-around;
   align-items: center;
   max-width: 100%;
-  height: 80vh;
+  height: 100vh;
 }
 
 .col-md-12 {
@@ -94,29 +94,90 @@ body {
   }
 }
 
+
+// right part, list of restaurants
+
 .plan-list {
   max-width: 45%;
-  padding: 2rem;
+  height: 100%;
+  padding: 0 2rem 0 0;
   align-self: flex-start;
-  .plan-box {
-    height: 7rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: $green;
-    padding: 20px;
-    margin: 20px;
-    font-size: 2rem;
-    h1 {
-      font-weight: bold;
-    }
-    span {
-      color: #f5f5f5;
-      text-decoration: underline;
-      font-weight: normal;
-    }
+}
+.plan-box {
+  height: 10rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(126,211,33,.9) 0%,rgba(126,211,33,.9) 91%,rgba(126,211,33,0) 91%,rgba(126,211,33,0) 100%);
+  padding: 20px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  button {
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #f48f8f;
+    color: #222;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(56, 56, 56, .5);
+    transition: background .3s ease;
+  }
+  button:hover {
+    background: #f15555;
+  }
+  button:focus {
+    outline: none;
+  }
+  button:active {
+    left: 1px;
+    bottom: -1px;
+    box-shadow: 1px 1px 2px rgba(56, 56, 56, .5);
   }
 }
+
+.place-box,
+.time-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  input {
+    height: 2.6rem;
+    margin-bottom: 4px;
+    margin-right: 10px;
+    padding-right: 10px;
+    background: #222;
+    color: #fefefe;
+    border: 0 solid #fff;
+    border-radius: 5px;
+    text-align: right;
+    text-transform: uppercase;
+    transition: background .3s ease;
+  }
+  input:focus {
+    background: #454545;
+    outline: 2px solid #f48f8f;
+  }
+  img {
+    height: 2.6rem;
+  }
+}
+.place-box {
+  input[type="text"] {
+    width: 330px;
+  }
+}
+.time-box {
+  input[type="time"] {
+    padding-right: 0;
+    padding-left: 25px;
+  }
+}
+
+
 
 
 
