@@ -5,8 +5,6 @@ import {
   REQUEST_PLAN_FAILURE,
 } from './actions';
 
-import { toLocalTime } from '../app/time_validator';
-
 
 const initialState = {
   plans: [],
@@ -25,7 +23,11 @@ const planList = (state = initialState, action) => {
         loading: true
       });
     case REQUEST_PLAN_SUCCESS:
-      return Object.assign({}, state, payload, {
+      return Object.assign({}, state, { plans: [
+        ...payload,
+        ...state.plans
+      ]},
+      {
         loading: false,
       });
     case REQUEST_PLAN_FAILURE:

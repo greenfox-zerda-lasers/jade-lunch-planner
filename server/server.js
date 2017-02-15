@@ -3,7 +3,6 @@ const express = require('express');
 const pg = require('pg-promise')();
 const bodyParser = require('body-parser');
 
-
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -16,15 +15,33 @@ const db = pg(process.env.DATABASE_URL || localDb);
 
 app.get('/api/plans', (req, res) => {
   const query =
-  `SELECT * FROM plans`;
+  `SELECT * FROM plans
+  ORDER BY plan_id DESC`;
   db.any(query)
   .then((dbResponse) => {
     res.json(dbResponse);
-  })
-  .catch((error) => {
+  }).catch((error) => {
     res.status(500).json({error: error.message});
   });
 });
+
+
+app.post('/api/plans', (req, res) => {
+  const query = {
+    text: `INSERT INTO plans (place, time, timezone_offset)
+    VALUES ($1, $2, $3)
+    RETURNING *`,
+    values: [req.body.place, req.body.time, req.body.timezone_offset]
+  };
+  db.one(query)
+    .then((dbResponse) => {
+      res.json(dbResponse);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    });
+});
+
 
 app.put('/api/plans/:plan_id', (req, res) => {
   const query =
@@ -35,7 +52,7 @@ app.put('/api/plans/:plan_id', (req, res) => {
     RETURNING plan_id, time`;
   db.one(query)
     .then((dbResponse) => {
-      res.json({ status: 'ok', id: dbResponse.plan_id });
+      res.json({ status: 'Ok', id: dbResponse.plan_id });
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });

@@ -1,6 +1,3 @@
-import { toUTS } from '../app/time_validator';
-
-
 export const updatePlan = payload => ({
   type: 'UPDATE_PLAN',
   payload
@@ -12,15 +9,15 @@ export const requestPlan = () => ({
 
 export const requestPlanSuccess = payload => ({
   type: 'REQUEST_PLAN_SUCCESS',
-  payload: {
-    plans: payload
-  }
+  payload
 });
 
 export const requestPlanFailure = () => ({
   type: 'REQUEST_PLAN_FAILURE',
 });
 
+
+// async ajax requests
 
 export const fetchPlan = () => {
   return dispatch => {
@@ -33,8 +30,32 @@ export const fetchPlan = () => {
       body: null
     }).then(response => {
       return response.json();
+    }).then(plans => {
+      dispatch(requestPlanSuccess(plans));
+    }).catch(error => {
+      dispatch(requestPlanFailure());
+    });
+  };
+};
+
+
+export const fetchNewPlan = plan => {
+  return dispatch => {
+    dispatch(requestPlan());
+    return fetch('/api/plans', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        place: plan.place,
+        time: plan.time,
+        timezone_offset: plan.timezone_offset,
+      })
+    }).then(response => {
+      return response.json();
     }).then(plan => {
-      dispatch(requestPlanSuccess(plan));
+      dispatch(requestPlanSuccess([ plan ]));
     }).catch(error => {
       dispatch(requestPlanFailure());
     });
@@ -52,7 +73,7 @@ export const fetchUpdatePlan = (plan_id, plan, timezoneOffset) => {
       },
       body: JSON.stringify({
         place: plan.place,
-        time: toUTS(plan.time, timezoneOffset),
+        time: plan.time,
       })
     }).catch((error) => {
       console.error('Request Failed', error);

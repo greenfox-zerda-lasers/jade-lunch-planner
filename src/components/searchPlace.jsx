@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as actionCreators from '../actions';
+import { timezoneOffset } from '../app/timeValidator';
 
-import { timezoneOffset } from '../app/time_validator';
 
-
-const tzOffset = timezoneOffset();
+const timezone_offset = timezoneOffset();
 
 
 class SearchPlace extends Component {
-  onChange(event) {
-    const { updatePlan, fetchUpdatePlan } = this.props.actions,
-          { plan } = this.props;
+  constructor() {
+    super();
 
-    updatePlan(event);
-    fetchUpdatePlan(1, plan, tzOffset);
+    this.state = {
+      place: '',
+      time: '12:00',
+      timezone_offset,
+    };
   }
-  render() {
-    const { title } = this.props;
 
+  onChange(event) {
+    this.setState(Object.assign(this.state, event));
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+
+    this.props.actions.fetchNewPlan(this.state);
+
+    this.setState({
+      place: '',
+      time: '12:00',
+      timezone_offset,
+    });
+  }
+
+  render() {
     return (
       <div className="input-wrapper col-sm-12 col-md-6">
         <form
-          onSubmit={this.handleSubmit}
+          onSubmit={this.onFormSubmit.bind(this)}
           className="col-md-12">
           <img src={require("../imgs/a66-logo.png")} className="logo"/>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
@@ -31,6 +48,7 @@ class SearchPlace extends Component {
               id="location"
               type="text"
               placeholder="Sushi Time"
+              value={this.state.place}
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
@@ -38,11 +56,12 @@ class SearchPlace extends Component {
             <input
               id="setTime"
               type="time"
-              placeholder="00:00"
+              value={this.state.time}
               onChange={event => this.onChange({time: event.target.value})}
             />
           </label>
           <span>Edit to update plan</span>
+          <button type="submit">Save</button>
         </form>
       </div>
     );
