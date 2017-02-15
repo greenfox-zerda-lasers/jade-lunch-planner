@@ -30,7 +30,7 @@ app.post('/api/plans', (req, res) => {
   const query = {
     text: `INSERT INTO plans (place, time, timezone_offset)
     VALUES ($1, $2, $3)
-    RETURNING plan_id, place, time, timezone_offset`,
+    RETURNING *`,
     values: [req.body.place, req.body.time, req.body.timezone_offset]
   };
   db.one(query)
