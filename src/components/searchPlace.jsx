@@ -75,13 +75,9 @@ SearchPlace.propTypes = {
   plan: React.PropTypes.object,
 };
 
-const mapStateProps = state => ({
-  plan: state.plan
-});
-
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
 
-export default connect(mapStateProps, mapDispatchToProps)(SearchPlace);
+export default connect(mapDispatchToProps)(SearchPlace);

@@ -33,6 +33,7 @@ export const fetchPlan = () => {
     }).then(plans => {
       dispatch(requestPlanSuccess(plans));
     }).catch(error => {
+      console.error('Request Failed!', error);
       dispatch(requestPlanFailure());
     });
   };
@@ -57,16 +58,17 @@ export const fetchNewPlan = plan => {
     }).then(plan => {
       dispatch(requestPlanSuccess([ plan ]));
     }).catch(error => {
+      console.error('Request Failed!', error);
       dispatch(requestPlanFailure());
     });
   };
 };
 
 
-export const fetchUpdatePlan = (plan_id, plan, timezoneOffset) => {
+export const fetchUpdatePlan = plan => {
   return dispatch => {
     dispatch(requestPlan());
-    return fetch(`/api/plans/${plan_id}`, {
+    return fetch(`/api/plans/${plan.plan_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -74,9 +76,14 @@ export const fetchUpdatePlan = (plan_id, plan, timezoneOffset) => {
       body: JSON.stringify({
         place: plan.place,
         time: plan.time,
+        timezone_offset: plan.timezone_offset,
       })
-    }).catch((error) => {
-      console.error('Request Failed', error);
+    }).then(response => {
+      return response.json();
+    }).then(plan => {
+      dispatch(requestPlanSuccess(plan));
+    }).catch(error => {
+      console.error('Request Failed!', error);
       dispatch(requestPlanFailure());
     });
   };

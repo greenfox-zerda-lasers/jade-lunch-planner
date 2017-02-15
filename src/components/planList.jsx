@@ -17,6 +17,7 @@ const PlanList = props => {
         key={plan.plan_id}
         place={plan.place}
         time={time}
+        planId={plan.plan_id}
       />
     );
   });

@@ -175,6 +175,14 @@ body {
     padding-right: 0;
     padding-left: 25px;
   }
+  ::-webkit-clear-button {
+    display: none;
+  }
+  ::-webkit-inner-spin-button {
+    margin-left: .4rem;
+    margin-right: .3rem;
+    font-size: 3rem;
+  }
 }
 
 

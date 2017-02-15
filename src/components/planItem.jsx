@@ -23,10 +23,10 @@ class PlanItem extends Component {
 
   componentWillMount() {
     this.setState({
-      plan_id: this.props.key,
+      plan_id: this.props.planId,
       place: this.props.place.trim(),
       time: this.props.time,
-    })
+    });
   }
 
   onChange(event) {
@@ -36,7 +36,7 @@ class PlanItem extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-    this.props.actions.fetchNewPlan(this.state);
+    this.props.actions.fetchUpdatePlan(this.state);
   }
 
   render() {
@@ -72,11 +72,13 @@ class PlanItem extends Component {
 
 PlanItem.propTypes = {
   actions: React.PropTypes.object,
-  plan: React.PropTypes.object,
+  planId: React.PropTypes.any,
+  place: React.PropTypes.string,
+  time: React.PropTypes.string,
 };
 
 const mapStateProps = state => ({
-  plan: state.plan
+  plans: state.planList.plans
 });
 
 const mapDispatchToProps = dispatch => ({
