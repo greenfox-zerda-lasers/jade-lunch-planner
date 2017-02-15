@@ -1,17 +1,11 @@
 //test App.jsx
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow, mount, render  } from 'enzyme';
+import PlanList from '../src/components/planlist';
 import App from '../src/app/App';
 
-test('App changes the text after click', () => {
-  // Render a checkbox with label in the document
-  const checkbox = shallow(
-    <App labelOn="On" labelOff="Off" />
-  );
-
-  expect(checkbox.text()).toEqual('Off');
-
-  checkbox.find('input').simulate('change');
-
-  expect(checkbox.text()).toEqual('On');
+describe('Test for the App component', () => {
+  it("should render without throwing an error",  () => {
+    expect(shallow(<App />).contains(<div className="container container-fluid row col-md-12"><PlanList /></div>)).toBe(true);
+  });
 });

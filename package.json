@@ -17,22 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/greenfox-zerda-lasers/jade-lunch-planner.git"
   },
-  "jest": {
-    "modulePaths": [
-      "/shared/vendor/modules"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(css|scss)$": "<rootDir>/config/CSSStub.js"
-    }
-  },
   "keywords": [
     "a66",
     "lunch",
