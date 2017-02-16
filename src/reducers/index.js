@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import planList from './plan';
-import googlePlaces from './googlePlaces';
+import googlePlacesList from './googlePlaces';
 
 
 export default combineReducers({
   planList,
-  googlePlaces,
+  googlePlacesList,
 });

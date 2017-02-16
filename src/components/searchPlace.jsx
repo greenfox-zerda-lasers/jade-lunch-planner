@@ -27,14 +27,14 @@ class SearchPlace extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-
-    this.props.actions.fetchNewPlan(this.state);
-
-    this.setState({
-      place: '',
-      time: '12:00',
-      timezone_offset,
-    });
+    this.props.actions.fetchGooglePlaces();
+    // this.props.actions.fetchNewPlan(this.state);
+    //
+    // this.setState({
+    //   place: '',
+    //   time: '12:00',
+    //   timezone_offset,
+    // });
   }
 
   render() {
