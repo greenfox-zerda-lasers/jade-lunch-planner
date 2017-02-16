@@ -8,7 +8,7 @@ const GooglePlacesList = props => {
 
   const restaurants = props.places.map(place => {
     return (
-      <li className="found-place">
+      <li className="found-place-item">
         <h1>{place.name}</h1>
       </li>
     );
@@ -16,7 +16,7 @@ const GooglePlacesList = props => {
 
   console.log(restaurants);
   return (
-    <div>
+    <div className="found-places">
       <ul>
         {restaurants}
       </ul>

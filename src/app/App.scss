@@ -9,6 +9,11 @@ $pink: #f48f8f;
   color: #360033;
 }
 
+@mixin standard-listed-item {
+  background: #222;
+  color: #fefefe;
+}
+
 @mixin user-input {
   height: 72px;
   width: 100%;
@@ -92,9 +97,12 @@ body {
 
 .input-wrapper {
   max-width: 45%;
+  max-height: 600px;
   padding: 2rem;
   background: $green;
   align-self: flex-start;
+  border-left: 4px solid #222;
+  overflow: hidden;
   input {
     width: 100%;
     height: 4rem;
@@ -139,6 +147,21 @@ body {
     button:active {
       @include button-active;
     }
+  }
+  .found-places {
+    max-height: 400px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 5px solid $pink;
+    overflow: scroll;
+  }
+  .found-place-item {
+    @include standard-listed-item;
+    padding: .4rem;
+    font-size: 1.4rem;
+    border-radius: 3px;
+    margin-bottom: 2px;
   }
 }
 
@@ -212,8 +235,7 @@ body {
     margin-bottom: 4px;
     margin-right: 10px;
     padding-right: 10px;
-    background: #222;
-    color: #fefefe;
+    @include standard-listed-item;
     border: 0 solid #fff;
     border-radius: 5px;
     text-align: right;

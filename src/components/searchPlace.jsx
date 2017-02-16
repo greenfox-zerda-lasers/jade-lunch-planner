@@ -52,7 +52,6 @@ class SearchPlace extends Component {
         <form
           onSubmit={this.onFormSubmit.bind(this)}
           className="col-md-12">
-          <img src={require("../imgs/a66-logo.png")} className="logo"/>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
             <input
               type="text"
@@ -69,8 +68,9 @@ class SearchPlace extends Component {
             />
             <button type="submit">Save</button>
           </div>
+          <GooglePlacesList places={this.props.googlePlacesList.googlePlaces}
+          setPlace={this.onClick} />
         </form>
-        <GooglePlacesList places={this.props.googlePlacesList.googlePlaces}/>
       </div>
     );
   }
