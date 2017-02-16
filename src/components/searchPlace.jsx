@@ -1,9 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as actionCreators from '../actions';
 import { timezoneOffset } from '../app/timeValidator';
+import GooglePlacesList from './googlePlacesList';
 
 
 const timezone_offset = timezoneOffset();
@@ -20,14 +22,21 @@ class SearchPlace extends Component {
     };
   }
 
-  onChange(event) {
+  googlePlacesSearch(keyword) {
+    this.props.actions.fetchGooglePlaces(keyword);
+  }
 
-    // this.setState(Object.assign(this.state, event));
+  onChange(place) {
+    const placeSearch = _.debounce(term => {
+      this.googlePlacesSearch(term); }, 1000);
+
+    this.setState({ place });
+    placeSearch(place);
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.actions.fetchGooglePlaces();
+    // this.props.actions.fetchGooglePlaces();
     // this.props.actions.fetchNewPlan(this.state);
     //
     // this.setState({
@@ -49,7 +58,7 @@ class SearchPlace extends Component {
               type="text"
               placeholder="Search Place"
               value={this.state.place}
-              onChange={event => this.onChange({place: event.target.value})}
+              onChange={event => this.onChange(event.target.value)}
             />
           </label>
           <div className="set-time-wrapper">
@@ -61,6 +70,7 @@ class SearchPlace extends Component {
             <button type="submit">Save</button>
           </div>
         </form>
+        <GooglePlacesList places={this.props.googlePlacesList.googlePlaces}/>
       </div>
     );
   }
@@ -69,12 +79,11 @@ class SearchPlace extends Component {
 
 SearchPlace.propTypes = {
   actions: React.PropTypes.object,
-  title: React.PropTypes.string,
-  plan: React.PropTypes.object,
+  googlePlacesList: React.PropTypes.object,
 };
 
 const mapStateProps = state => ({
-  plan: state.plan
+  googlePlacesList: state.googlePlacesList
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,4 +1,5 @@
 node_modules/
+src/services/
 bundle.js
 bundle.js.map
 npm-debug.log

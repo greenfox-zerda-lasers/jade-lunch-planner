@@ -17,10 +17,10 @@ export const requestGooglePlacesFailure = () => ({
 });
 
 
-export const fetchGooglePlaces = () => {
+export const fetchGooglePlaces = keyword => {
   return dispatch => {
     dispatch(requestGooglePlaces());
-    return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=2000&type=restaurant&keyword=pesti&key=${GOOGLE_PLACES_API_KEY}`)
+    return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=800&type=restaurant&keyword=${keyword}&key=${GOOGLE_PLACES_API_KEY}`)
       .then(response => {
       return response.json();
     }).then(places => {
