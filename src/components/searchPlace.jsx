@@ -26,12 +26,22 @@ class SearchPlace extends Component {
     this.props.actions.fetchGooglePlaces(keyword);
   }
 
-  onChange(place) {
+  onChange(event) {
+    console.log(event);
     const placeSearch = _.debounce(term => {
       this.googlePlacesSearch(term); }, 1000);
 
+    this.setState(Object.assign(this.state, event));
+
+    if(event.place) {
+      placeSearch(event.place);
+    }
+  }
+
+  setPlace(place) {
+    console.log(typeof this.setState);
+
     this.setState({ place });
-    placeSearch(place);
   }
 
   onFormSubmit(event) {
@@ -57,19 +67,20 @@ class SearchPlace extends Component {
               type="text"
               placeholder="Search Place"
               value={this.state.place}
-              onChange={event => this.onChange(event.target.value)}
+              onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
           <div className="set-time-wrapper">
             <input
               type="time"
-              value={this.state.place}
-              onChange={event => this.onChange({place: event.target.value})}
+              value={this.state.time}
+              onChange={event => this.onChange({time: event.target.value})}
             />
             <button type="submit">Save</button>
           </div>
           <GooglePlacesList places={this.props.googlePlacesList.googlePlaces}
-          setPlace={this.onClick} />
+          // setPlace={this.setPlace}
+        />
         </form>
       </div>
     );

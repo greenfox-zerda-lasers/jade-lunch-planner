@@ -8,13 +8,16 @@ const GooglePlacesList = props => {
 
   const restaurants = props.places.map(place => {
     return (
-      <li className="found-place-item">
+      <li
+        className="found-place-item"
+        key={place.id}
+        // onClick={() => props.setPlace(place.name)}
+        >
         <h1>{place.name}</h1>
       </li>
     );
   });
 
-  console.log(restaurants);
   return (
     <div className="found-places">
       <ul>
@@ -26,7 +29,8 @@ const GooglePlacesList = props => {
 
 
 GooglePlacesList.propTypes = {
-  places: React.PropTypes.array
+  places: React.PropTypes.array,
+  setPlace: React.PropTypes.func,
 };
 
 
