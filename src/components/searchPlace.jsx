@@ -27,7 +27,6 @@ class SearchPlace extends Component {
   }
 
   onChange(event) {
-    console.log(event);
     const placeSearch = _.debounce(term => {
       this.googlePlacesSearch(term); }, 1000);
 
@@ -39,21 +38,17 @@ class SearchPlace extends Component {
   }
 
   setPlace(place) {
-    console.log(typeof this.setState);
-
     this.setState({ place });
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    // this.props.actions.fetchGooglePlaces();
-    // this.props.actions.fetchNewPlan(this.state);
-    //
-    // this.setState({
-    //   place: '',
-    //   time: '12:00',
-    //   timezone_offset,
-    // });
+    this.props.actions.fetchNewPlan(this.state);
+
+    this.setState({
+      place: '',
+      time: '12:00',
+    });
   }
 
   render() {
@@ -78,9 +73,10 @@ class SearchPlace extends Component {
             />
             <button type="submit">Save</button>
           </div>
-          <GooglePlacesList places={this.props.googlePlacesList.googlePlaces}
-          // setPlace={this.setPlace}
-        />
+          <GooglePlacesList
+            places={this.props.googlePlacesList.googlePlaces}
+            setPlace={this.setPlace.bind(this)}
+          />
         </form>
       </div>
     );

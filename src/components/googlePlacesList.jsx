@@ -11,7 +11,7 @@ const GooglePlacesList = props => {
       <li
         className="found-place-item"
         key={place.id}
-        // onClick={() => props.setPlace(place.name)}
+        onClick={event => props.setPlace(place.name)}
         >
         <h1>{place.name}</h1>
       </li>

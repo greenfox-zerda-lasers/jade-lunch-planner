@@ -12,17 +12,11 @@ import PlanList from '../components/planList';
 class App extends Component {
   componentDidMount() {
     const { fetchPlan } = this.props.actions;
-    // fetchPlan();
+    fetchPlan();
   }
 
   render() {
-    // const { plans } = this.props.planList;
-
-    const plans = [
-      {plan_id:1, place:'Szarvas Bar', time:'12:32', timezone_offset:-60},
-      {plan_id:2, place:'Bodza Tatt', time:'12:32', timezone_offset:-60},
-      {plan_id:3, place:'Hulla 120 Rt.', time:'12:32', timezone_offset:-60},
-    ];
+    const { plans } = this.props.planList;
 
     return (
       <div className="container container-fluid row col-md-12">
