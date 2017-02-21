@@ -1,9 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as actionCreators from '../actions';
 import { timezoneOffset } from '../app/timeValidator';
+import GooglePlacesList from './googlePlacesList';
 
 
 const timezone_offset = timezoneOffset();
@@ -20,19 +22,32 @@ class SearchPlace extends Component {
     };
   }
 
+  googlePlacesSearch(keyword) {
+    this.props.actions.fetchGooglePlaces(keyword);
+  }
+
   onChange(event) {
+    const placeSearch = _.debounce(term => {
+      this.googlePlacesSearch(term); }, 1000);
+
     this.setState(Object.assign(this.state, event));
+
+    if(event.place) {
+      placeSearch(event.place);
+    }
+  }
+
+  setPlace(place) {
+    this.setState({ place });
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-
     this.props.actions.fetchNewPlan(this.state);
 
     this.setState({
       place: '',
       time: '12:00',
-      timezone_offset,
     });
   }
 
@@ -42,26 +57,26 @@ class SearchPlace extends Component {
         <form
           onSubmit={this.onFormSubmit.bind(this)}
           className="col-md-12">
-          <img src={require("../imgs/a66-logo.png")} className="logo"/>
           <label id="location-label" htmlFor="location">Current Lunch <b>Location</b> is
             <input
-              id="location"
               type="text"
-              placeholder="Sushi Time"
+              placeholder="Search Place"
               value={this.state.place}
               onChange={event => this.onChange({place: event.target.value})}
             />
           </label>
-          <label htmlFor="setTime">Current Lunch <b>Time</b> is
+          <div className="set-time-wrapper">
             <input
-              id="setTime"
               type="time"
               value={this.state.time}
               onChange={event => this.onChange({time: event.target.value})}
             />
-          </label>
-          <span>Edit to update plan</span>
-          <button type="submit">Save</button>
+            <button type="submit">Save</button>
+          </div>
+          <GooglePlacesList
+            places={this.props.googlePlacesList.googlePlaces}
+            setPlace={this.setPlace.bind(this)}
+          />
         </form>
       </div>
     );
@@ -71,12 +86,11 @@ class SearchPlace extends Component {
 
 SearchPlace.propTypes = {
   actions: React.PropTypes.object,
-  title: React.PropTypes.string,
-  plan: React.PropTypes.object,
+  googlePlacesList: React.PropTypes.object,
 };
 
 const mapStateProps = state => ({
-  plan: state.plan
+  googlePlacesList: state.googlePlacesList
 });
 
 const mapDispatchToProps = dispatch => ({

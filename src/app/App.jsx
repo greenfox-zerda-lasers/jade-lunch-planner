@@ -16,11 +16,12 @@ class App extends Component {
   }
 
   render() {
-    const { plans } = this.props.planList;
+    const { plans } = this.props.planList,
+          { googlePlaces } = this.props.googlePlacesList;
 
     return (
       <div className="container container-fluid row col-md-12">
-        <SearchPlace {...this.props} />
+        <SearchPlace googlePlaces={googlePlaces} />
         <PlanList plans={plans} />
       </div>
     );
@@ -31,10 +32,12 @@ class App extends Component {
 App.propTypes = {
   actions: React.PropTypes.object,
   planList: React.PropTypes.object,
+  googlePlacesList: React.PropTypes.object,
 };
 
 const mapStateProps = state => ({
-  planList: state.planList
+  planList: state.planList,
+  googlePlacesList: state.googlePlacesList,
 });
 
 const mapDispatchToProps = dispatch => ({

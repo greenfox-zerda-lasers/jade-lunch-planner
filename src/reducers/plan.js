@@ -1,5 +1,6 @@
 import {
   UPDATE_PLAN,
+  DELETE_PLAN,
   REQUEST_PLAN,
   REQUEST_PLAN_SUCCESS,
   REQUEST_PLAN_FAILURE,
@@ -18,14 +19,22 @@ const planList = (state = initialState, action) => {
       return Object.assign({}, state, payload, {
         loading: false
       });
+    case DELETE_PLAN:
+      return Object.assign({}, state, { plans: [
+        ...state.plans.slice(0, payload),
+        ...state.plans.slice(payload + 1)
+      ]},
+    {
+      loading: false,
+    });
     case REQUEST_PLAN:
       return Object.assign({}, state, {
         loading: true
       });
     case REQUEST_PLAN_SUCCESS:
       return Object.assign({}, state, { plans: [
-        ...payload,
-        ...state.plans
+        ...state.plans,
+        ...payload
       ]},
       {
         loading: false,
