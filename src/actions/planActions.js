@@ -3,6 +3,11 @@ export const updatePlan = payload => ({
   payload
 });
 
+export const deletePlan = payload => ({
+  type: 'DELETE_PLAN',
+  payload
+});
+
 export const requestPlan = () => ({
   type: 'REQUEST_PLAN'
 });
@@ -55,8 +60,8 @@ export const fetchNewPlan = plan => {
       })
     }).then(response => {
       return response.json();
-    }).then(plan => {
-      dispatch(requestPlanSuccess([ plan ]));
+    }).then(responsePlan => {
+      dispatch(requestPlanSuccess([ responsePlan ]));
     }).catch(error => {
       console.error('Request Failed!', error);
       dispatch(requestPlanFailure());
@@ -78,10 +83,25 @@ export const fetchUpdatePlan = plan => {
         time: plan.time,
         timezone_offset: plan.timezone_offset,
       })
+    }).catch(error => {
+      console.error('Request Failed!', error);
+      dispatch(requestPlanFailure());
+    });
+  };
+};
+
+
+export const fetchDeletePlan = plan_id => {
+  return dispatch => {
+    dispatch(requestPlan());
+    return fetch(`/api/plans/${plan_id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: null
     }).then(response => {
       return response.json();
-    }).then(plan => {
-      dispatch(requestPlanSuccess(plan));
     }).catch(error => {
       console.error('Request Failed!', error);
       dispatch(requestPlanFailure());

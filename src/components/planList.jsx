@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import PlanItem from './planItem';
 import { toLocalTime } from '../app/timeValidator';
@@ -9,12 +10,13 @@ const PlanList = props => {
     return <div>Loading... </div>;
   }
 
-  const plans = props.plans.map(plan => {
+  const plans = props.plans.map((plan, index) => {
     const time = toLocalTime(plan.time, plan.timezone_offset);
 
     return (
       <PlanItem
-        key={plan.plan_id}
+        key={index}
+        listKey={index}
         place={plan.place}
         time={time}
         planId={plan.plan_id}
@@ -37,4 +39,9 @@ PlanList.propTypes = {
 };
 
 
-export default PlanList;
+const mapStateProps = state => ({
+  plans: state.planList.plans
+});
+
+
+export default connect(mapStateProps)(PlanList);

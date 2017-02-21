@@ -33,6 +33,13 @@ class PlanItem extends Component {
     this.setState(Object.assign(this.state, event));
   }
 
+  onDelete(event) {
+    const { actions, listKey } = this.props;
+
+    actions.fetchDeletePlan(this.state.plan_id);
+    actions.deletePlan(listKey);
+  }
+
   onFormSubmit(event) {
     event.preventDefault();
 
@@ -45,7 +52,11 @@ class PlanItem extends Component {
         <form
           onSubmit={this.onFormSubmit.bind(this)}
           className="plan-form col-md-12">
-          <img className="delete" src={require("../imgs/delete.png")} />
+          <img
+            className="delete"
+            src={require("../imgs/delete.png")}
+            onClick={event => this.onDelete(event)}
+          />
           <button type="submit">Update</button>
           <div className="plan-container">
             <div className="place-box">
@@ -73,18 +84,15 @@ class PlanItem extends Component {
 
 PlanItem.propTypes = {
   actions: React.PropTypes.object,
-  planId: React.PropTypes.any,
+  listKey: React.PropTypes.any,
   place: React.PropTypes.string,
+  planId: React.PropTypes.any,
   time: React.PropTypes.string,
 };
-
-const mapStateProps = state => ({
-  plans: state.planList.plans
-});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
 
-export default connect(mapStateProps, mapDispatchToProps)(PlanItem);
+export default connect(null, mapDispatchToProps)(PlanItem);

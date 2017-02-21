@@ -13,7 +13,7 @@ const GooglePlacesList = props => {
         key={place.id}
         onClick={event => props.setPlace(place.name)}
         >
-        <h1>{place.name}</h1>
+        <h1>{place.name.split("-")[0]}</h1>
       </li>
     );
   });
