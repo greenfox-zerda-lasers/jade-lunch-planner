@@ -10,27 +10,10 @@ const timezone_offset = timezoneOffset();
 
 
 class PlanItem extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      plan_id: null,
-      place: '',
-      time: '12:00',
-      timezone_offset,
-    };
-  }
-
-  componentWillMount() {
-    this.setState({
-      plan_id: this.props.planId,
-      place: this.props.place.trim(),
-      time: this.props.time,
-    });
-  }
-
   onChange(event) {
-    this.setState(Object.assign(this.state, event));
+    const { actions, listKey } = this.props;
+
+    actions.updatePlan({ event, listKey });
   }
 
   onDelete() {
@@ -63,14 +46,14 @@ class PlanItem extends Component {
               <input
                 type="text"
                 maxLength="20"
-                value={this.state.place}
+                value={this.props.place}
                 onChange={event => this.onChange({place: event.target.value})} />
               <img src={require("../imgs/restaurant.png")} />
             </div>
             <div className="time-box">
               <input
                 type="time"
-                value={this.state.time}
+                value={this.props.time}
                 onChange={event => this.onChange({time: event.target.value})} />
               <img src={require("../imgs/clock.png")} />
             </div>
