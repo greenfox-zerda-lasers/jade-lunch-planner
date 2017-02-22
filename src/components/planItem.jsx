@@ -25,8 +25,14 @@ class PlanItem extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+    const { planId, place, time } = this.props;
 
-    this.props.actions.fetchUpdatePlan(this.state);
+    this.props.actions.fetchUpdatePlan({
+      plan_id: planId,
+      place,
+      time,
+      timezone_offset
+    });
   }
 
   render() {
