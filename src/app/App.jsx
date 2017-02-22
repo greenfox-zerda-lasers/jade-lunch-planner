@@ -41,5 +41,5 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
-
+export const app = App;
 export default connect(mapStateProps, mapDispatchToProps)(App);
