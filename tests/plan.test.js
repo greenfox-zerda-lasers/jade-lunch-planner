@@ -1,4 +1,4 @@
-import plan from '../src/reducers/plan'
+import plan from '../src/reducers/plan';
 
 describe('Plan', () => {
   it('should give back state', () => {
@@ -6,7 +6,7 @@ describe('Plan', () => {
 
 	const nextState = plan(state, {});
 
-	expect(state).toEqual(nextState)
+	expect(state).toEqual(nextState);
 });
 
   it('should give state after update plan', () => {

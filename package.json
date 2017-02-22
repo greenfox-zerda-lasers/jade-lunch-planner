@@ -8,9 +8,16 @@
   },
   "scripts": {
     "test": "jest",
+    "test:watch": "npm test -- --watch",
     "start": "node server/server.js",
     "build": "webpack -d && webpack-dev-server --content-base dist/ --inline --hot --port 3000",
     "heroku-postbuild": "webpack -p"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/fileMock.js",
+       "\\.(css|scss)$": "<rootDir>/tests/styleMock.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -64,9 +71,12 @@
     "enzyme": "^2.7.0",
     "expect": "^1.20.2",
     "jest": "^18.1.0",
+    "jest-css-modules": "^1.1.0",
     "phantomjs-prebuilt": "^2.1.14",
     "react-addons-test-utils": "^15.4.2",
     "react-test-utils": "0.0.1",
+    "redux-mock-store": "^1.2.2",
+    "webpack-babel-jest": "^1.0.4",
     "webpack-dev-server": "^1.16.2"
   },
   "eslintConfig": {
