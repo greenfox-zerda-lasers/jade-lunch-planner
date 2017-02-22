@@ -33,7 +33,7 @@ class PlanItem extends Component {
     this.setState(Object.assign(this.state, event));
   }
 
-  onDelete(event) {
+  onDelete() {
     const { actions, listKey } = this.props;
 
     actions.fetchDeletePlan(this.state.plan_id);
@@ -55,7 +55,7 @@ class PlanItem extends Component {
           <img
             className="delete"
             src={require("../imgs/delete.png")}
-            onClick={event => this.onDelete(event)}
+            onClick={event => this.onDelete()}
           />
           <button type="submit">Update</button>
           <div className="plan-container">
@@ -89,6 +89,7 @@ PlanItem.propTypes = {
   planId: React.PropTypes.any,
   time: React.PropTypes.string,
 };
+
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)

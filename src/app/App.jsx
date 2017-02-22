@@ -35,7 +35,7 @@ App.propTypes = {
   googlePlacesList: React.PropTypes.object,
 };
 
-const mapStateProps = state => ({
+const mapStateToProps = state => ({
   planList: state.planList,
   googlePlacesList: state.googlePlacesList,
 });
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

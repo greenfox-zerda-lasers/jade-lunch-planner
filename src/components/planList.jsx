@@ -39,9 +39,4 @@ PlanList.propTypes = {
 };
 
 
-const mapStateProps = state => ({
-  plans: state.planList.plans
-});
-
-
-export default connect(mapStateProps)(PlanList);
+export default PlanList;

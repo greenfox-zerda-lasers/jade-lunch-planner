@@ -3,14 +3,11 @@ const express = require('express');
 const pg = require('pg-promise')();
 const bodyParser = require('body-parser');
 
+// const apis = require('../src/services/apis.js');
+
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 
 const port = process.env.PORT || 3000;
 const localDb = 'postgres://jade@127.0.0.1:5432/lunch_planner';
@@ -75,6 +72,21 @@ app.delete('/api/plans/:plan_id', (req, res) => {
       res.status(500).json({ error: error.message });
     });
 });
+
+
+// googlesearch
+// app.get(`/api/google/:place)`, (req, res) => {
+//   const API_KEY = apis.GOOGLE_PLACES_API_KEY;
+//   const query = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=800&type=restaurant&keyword=${req.params.place}&key=${API_KEY}`;
+//   any(query)
+//     .then(responsedPlaces => {
+//       console.log(responsedPlaces);
+//       res.json(responsedPlaces);
+//     }).catch(error => {
+//       res.status(500).json({ error: error.message });
+//     });
+// });
+
 
 
 app.listen(port, () => {
