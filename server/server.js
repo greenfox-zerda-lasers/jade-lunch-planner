@@ -2,8 +2,9 @@ const path = require('path');
 const express = require('express');
 const pg = require('pg-promise')();
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
 
-// const apis = require('../src/services/apis.js');
+const apis = require('../src/services/apis.js');
 
 const app = express();
 app.use(bodyParser.json());
@@ -74,19 +75,19 @@ app.delete('/api/plans/:plan_id', (req, res) => {
 });
 
 
-// googlesearch
-// app.get(`/api/google/:place)`, (req, res) => {
-//   const API_KEY = apis.GOOGLE_PLACES_API_KEY;
-//   const query = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=800&type=restaurant&keyword=${req.params.place}&key=${API_KEY}`;
-//   any(query)
-//     .then(responsedPlaces => {
-//       console.log(responsedPlaces);
-//       res.json(responsedPlaces);
-//     }).catch(error => {
-//       res.status(500).json({ error: error.message });
-//     });
-// });
-
+// googleSearch
+app.get('/api/google/:place', (req, res) => {
+  const API_KEY = apis.GOOGLE_PLACES_API_KEY;
+  const query = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=800&type=restaurant&keyword=${req.params.place}&key=${API_KEY}`;
+  fetch(query)
+    .then(response => {
+      return response.json();
+    }).then(places => {
+      res.json(places);
+    }).catch(error => {
+      console.log(error);
+    });
+  });
 
 
 app.listen(port, () => {
