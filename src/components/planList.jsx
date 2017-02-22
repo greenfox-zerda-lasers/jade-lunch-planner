@@ -43,5 +43,5 @@ const mapStateProps = state => ({
   plans: state.planList.plans
 });
 
-
+export const PlanListComponent = PlanList;
 export default connect(mapStateProps)(PlanList);
