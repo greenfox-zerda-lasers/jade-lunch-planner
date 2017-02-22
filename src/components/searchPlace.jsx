@@ -86,7 +86,7 @@ class SearchPlace extends Component {
 
 SearchPlace.propTypes = {
   actions: React.PropTypes.object,
-  googlePlacesList: React.PropTypes.object,
+  googlePlaces: React.PropTypes.any,
 };
 
 const mapDispatchToProps = dispatch => ({

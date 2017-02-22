@@ -19,7 +19,7 @@ class PlanItem extends Component {
   onDelete() {
     const { actions, listKey } = this.props;
 
-    actions.fetchDeletePlan(this.state.plan_id);
+    actions.fetchDeletePlan(this.props.planId);
     actions.deletePlan(listKey);
   }
 
