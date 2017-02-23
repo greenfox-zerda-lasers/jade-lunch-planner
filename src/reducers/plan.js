@@ -16,7 +16,12 @@ const planList = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case UPDATE_PLAN:
-      return Object.assign({}, state, payload, {
+      return Object.assign({}, state, { plans: [
+        ...state.plans.slice(0, payload.listKey),
+        Object.assign(state.plans[payload.listKey], payload.event),
+        ...state.plans.slice(payload.listKey + 1)
+      ]},
+      {
         loading: false
       });
     case DELETE_PLAN:
@@ -33,8 +38,8 @@ const planList = (state = initialState, action) => {
       });
     case REQUEST_PLAN_SUCCESS:
       return Object.assign({}, state, { plans: [
-        ...state.plans,
-        ...payload
+        ...payload,
+        ...state.plans
       ]},
       {
         loading: false,

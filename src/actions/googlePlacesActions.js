@@ -20,8 +20,14 @@ export const requestGooglePlacesFailure = () => ({
 export const fetchGooglePlaces = keyword => {
   return dispatch => {
     dispatch(requestGooglePlaces());
-    return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=800&type=restaurant&keyword=${keyword}&key=${GOOGLE_PLACES_API_KEY}`)
-      .then(response => {
+    return fetch(`/api/google/${keyword}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: null
+    }).then(response => {
+      console.log(response);
       return response.json();
     }).then(places => {
       dispatch(requestGooglePlacesSucces(places.results));

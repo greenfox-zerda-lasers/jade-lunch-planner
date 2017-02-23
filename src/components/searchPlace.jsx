@@ -74,7 +74,7 @@ class SearchPlace extends Component {
             <button type="submit">Save</button>
           </div>
           <GooglePlacesList
-            places={this.props.googlePlacesList.googlePlaces}
+            places={this.props.googlePlaces}
             setPlace={this.setPlace.bind(this)}
           />
         </form>
@@ -86,16 +86,12 @@ class SearchPlace extends Component {
 
 SearchPlace.propTypes = {
   actions: React.PropTypes.object,
-  googlePlacesList: React.PropTypes.object,
+  googlePlaces: React.PropTypes.any,
 };
-
-const mapStateProps = state => ({
-  googlePlacesList: state.googlePlacesList
-});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
 
-export default connect(mapStateProps, mapDispatchToProps)(SearchPlace);
+export default connect(null, mapDispatchToProps)(SearchPlace);

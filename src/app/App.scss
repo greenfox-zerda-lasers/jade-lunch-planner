@@ -123,6 +123,9 @@ body {
     width: 10rem;
     margin-right: 20px;
   }
+  input:focus {
+    outline: 2px solid $pink;
+  }
   label {
     width: 100%;
     @include title;
