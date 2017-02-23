@@ -85,6 +85,7 @@ body {
 }
 
 .container {
+  min-width: 920px;
   max-width: 1024px;
   height: 100vh;
   font-family: Old Standard TT;
@@ -104,12 +105,20 @@ body {
 .input-wrapper {
   max-width: 45%;
   max-height: 600px;
+  position: relative;
   padding: 2rem;
   background: $green;
   align-self: flex-start;
   border-left: 4px solid $black;
   border-bottom: 8px solid rgba(126, 211, 33, 0);
   overflow: hidden;
+  .logo {
+    position: absolute;
+    width: 60px;
+    top: 5px;
+    left: 5px;
+    opacity: .9;
+  }
   input {
     width: 100%;
     height: 4rem;
@@ -125,6 +134,7 @@ body {
   }
   input:focus {
     outline: 2px solid $pink;
+    background: #f4e8e8;
   }
   label {
     width: 100%;
@@ -179,21 +189,18 @@ body {
 
 
 // right part, list of restaurants
-.plan-form {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 0;
-}
 
 .plan-list {
   max-width: 45%;
   height: 100%;
-  padding: 0 2rem 0 0;
+  max-height: 600px;
+  padding: 0 2rem 1rem 0;
   align-self: flex-start;
+  overflow: scroll;
 }
 .plan-box {
   height: 10rem;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -204,6 +211,21 @@ body {
   margin-bottom: 20px;
   border-top: 2px solid #222;
   font-size: 1.6rem;
+  p {
+    background: $black;
+    color: #fefefe;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px 0 0 5px;
+    padding: .6rem 0 .4rem 0;
+    font-weight: bold;
+  }
+  .plan-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 0;
+  }
   button {
     align-self: flex-end;
     @include button-props;

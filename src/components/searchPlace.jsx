@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -22,18 +21,11 @@ class SearchPlace extends Component {
     };
   }
 
-  googlePlacesSearch(keyword) {
-    this.props.actions.fetchGooglePlaces(keyword);
-  }
-
   onChange(event) {
-    const placeSearch = _.debounce(term => {
-      this.googlePlacesSearch(term); }, 1000);
-
     this.setState(Object.assign(this.state, event));
 
     if(event.place) {
-      placeSearch(event.place);
+      this.props.search(event.place);
     }
   }
 
@@ -54,6 +46,10 @@ class SearchPlace extends Component {
   render() {
     return (
       <div className="input-wrapper col-sm-12 col-md-6">
+        <img
+          className="logo"
+          src={require("../imgs/a66-logo.png")}
+        />
         <form
           onSubmit={this.onFormSubmit.bind(this)}
           className="col-md-12">
@@ -75,8 +71,7 @@ class SearchPlace extends Component {
           </div>
           <GooglePlacesList
             places={this.props.googlePlaces}
-            setPlace={this.setPlace.bind(this)}
-          />
+            setPlace={this.setPlace.bind(this)} />
         </form>
       </div>
     );
@@ -86,6 +81,7 @@ class SearchPlace extends Component {
 
 SearchPlace.propTypes = {
   actions: React.PropTypes.object,
+  search: React.PropTypes.func,
   googlePlaces: React.PropTypes.any,
 };
 

@@ -9,8 +9,9 @@ const GooglePlacesList = props => {
   const restaurants = props.places.map(place => {
     return (
       <li
-        className="found-place-item"
         key={place.id}
+        className="found-place-item"
+        title={place.vicinity}
         onClick={event => props.setPlace(place.name)}
         >
         <h1>{place.name.split("-")[0]}</h1>

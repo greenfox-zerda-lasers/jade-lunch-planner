@@ -7,7 +7,13 @@ import { toLocalTime } from '../app/timeValidator';
 
 const PlanList = props => {
   if(props.plans.length === 0) {
-    return <div>Loading... </div>;
+    return (
+      <div className="plan-list col-sm-12 col-md-6">
+        <div className="plan-box">
+          <p>No plan to eat!</p>
+        </div>
+      </div>
+    );
   }
 
   const plans = props.plans.map((plan, index) => {

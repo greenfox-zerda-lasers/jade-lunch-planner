@@ -27,7 +27,6 @@ export const fetchGooglePlaces = keyword => {
       },
       body: null
     }).then(response => {
-      console.log(response);
       return response.json();
     }).then(places => {
       dispatch(requestGooglePlacesSucces(places.results));
