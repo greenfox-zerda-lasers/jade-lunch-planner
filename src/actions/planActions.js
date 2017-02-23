@@ -83,6 +83,8 @@ export const fetchUpdatePlan = plan => {
         time: plan.time,
         timezone_offset: plan.timezone_offset,
       })
+    }).then(() => {
+      dispatch(requestPlanSuccess({}));
     }).catch(error => {
       console.error('Request Failed!', error);
       dispatch(requestPlanFailure());

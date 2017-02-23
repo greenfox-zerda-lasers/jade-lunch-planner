@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,13 +16,21 @@ class App extends Component {
     fetchPlan();
   }
 
+  googlePlacesSearch(place) {
+    this.props.actions.fetchGooglePlaces(place);
+  }
+
   render() {
     const { plans } = this.props.planList,
           { googlePlaces } = this.props.googlePlacesList;
 
+    const placesSearch = _.debounce(term => { this.googlePlacesSearch(term); }, 600);
+
     return (
       <div className="container container-fluid row col-md-12">
-        <SearchPlace googlePlaces={googlePlaces} />
+        <SearchPlace
+          googlePlaces={googlePlaces}
+          search={placesSearch} />
         <PlanList plans={plans} />
       </div>
     );
