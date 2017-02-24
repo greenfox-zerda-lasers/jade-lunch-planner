@@ -39,7 +39,7 @@ class PlanItem extends Component {
     return (
       <div className="plan-box">
         <form
-          className="plan-form col-md-12"
+          className="plan-form"
           onSubmit={this.onFormSubmit.bind(this)} >
           <img
             className="delete"

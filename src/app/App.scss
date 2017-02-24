@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Old+Standard+TT|Oswald:400,700');
 
 $black: #222;
-$green: rgba(126, 211, 33, .9);
+$green: rgba(122, 208, 80, .9);
 $grey: #454545;
 $pink: #f48f8f;
 $pink-light: #f4e8e8;
@@ -75,9 +75,9 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  background: url('../imgs/menza.png');
+  background: url('../imgs/menza.png') no-repeat fixed;
   background-size: cover;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .logo {
@@ -207,7 +207,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, rgba(126,211,33,.9) 0%,rgba(126,211,33,.9) 92%,rgba(126,211,33,0) 92%,rgba(126,211,33,0) 100%);
+  background: linear-gradient(135deg, $green 0%, $green 92%,rgba(126,211,33,0) 92%,rgba(126,211,33,0) 100%);
   padding: 20px;
   padding-right: 5px;
   margin-bottom: 20px;
@@ -233,8 +233,8 @@ body {
   }
   button {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 15px;
+    bottom: 15px;
     @include button-props;
   }
   button:hover {
@@ -249,8 +249,8 @@ body {
   .delete {
     position: absolute;
     width: 15px;
-    top: -15px;
-    left: -15px;
+    top: 3px;
+    left: 3px;
     background: #fff;
     border-radius: 50%;
     transition: all .3s ease;
@@ -298,6 +298,7 @@ body {
 }
 .time-box {
   input[type="time"] {
+    max-width: 150px;
     padding-left: 25px;
   }
   ::-webkit-clear-button {
@@ -309,3 +310,14 @@ body {
     font-size: 3rem;
   }
 }
+
+// @media only screen and (max-width : 900px) {
+//   .container {
+//     flex-direction: column;
+//     overflow-x: hidden;
+//   }
+//   .plan-list,
+//   .input-wrapper {
+//     align-self: none;
+//   }
+// }
