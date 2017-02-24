@@ -45,7 +45,7 @@ class SearchPlace extends Component {
 
   render() {
     return (
-      <div className="input-wrapper col-sm-12 col-md-6">
+      <div className="input-wrapper col-md-6">
         <img
           className="logo"
           src={require("../imgs/a66-logo.png")}

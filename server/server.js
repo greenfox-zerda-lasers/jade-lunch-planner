@@ -65,7 +65,8 @@ app.put('/api/plans/:plan_id', (req, res) => {
 app.delete('/api/plans/:plan_id', (req, res) => {
   const query =
     `DELETE FROM plans
-    WHERE plan_id = ${req.params.plan_id}`;
+    WHERE plan_id = ${req.params.plan_id}
+    RETURNING *`;
   db.one(query)
     .then(() => {
       res.json({ status: 200 });

@@ -39,8 +39,8 @@ class PlanItem extends Component {
     return (
       <div className="plan-box">
         <form
-          onSubmit={this.onFormSubmit.bind(this)}
-          className="plan-form col-md-12">
+          className="plan-form"
+          onSubmit={this.onFormSubmit.bind(this)} >
           <img
             className="delete"
             src={require("../imgs/delete.png")}
@@ -51,7 +51,6 @@ class PlanItem extends Component {
             <div className="place-box">
               <input
                 type="text"
-                maxLength="20"
                 value={this.props.place}
                 onChange={event => this.onChange({place: event.target.value})} />
               <img src={require("../imgs/restaurant.png")} />
