@@ -45,4 +45,6 @@ PlanList.propTypes = {
 };
 
 
+
+export const PlanListComponent = PlanList;
 export default PlanList;

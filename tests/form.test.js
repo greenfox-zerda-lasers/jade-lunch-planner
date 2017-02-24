@@ -1,17 +1,11 @@
 //test App.jsx
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import PlanList from '../src/components/planlist';
+import PlanListComponent from '../src/components/planlist';
 import SearchPlace from '../src/components/searchPlace';
 import { app } from '../src/app/App';
 import { Provider } from 'react-redux';
 
-// test('App first test', () =>{
-//   const app = shallow(<App />);
-//
-//   expect(app.title())
-// .toEqual('LUNCH');
-// });
 
 describe('Test for the App component', () => {
   it("should render without throwing an error",  () => {
@@ -22,5 +16,11 @@ describe('Test for the App component', () => {
   it("should have 2 divs", () => {
     const wrapper = mount(<app />);
     expect(wrapper.children().length).toBe(2);
+  });
+});
+
+describe('Test PlanList', () => {
+  it("description", function () {
+    expect(shallow(<PlanListComponent />).children.length).toBe(1);
   });
 });
