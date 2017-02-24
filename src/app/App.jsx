@@ -24,7 +24,7 @@ class App extends Component {
     const { plans } = this.props.planList,
           { googlePlaces } = this.props.googlePlacesList;
 
-    const placesSearch = _.debounce(term => { this.googlePlacesSearch(term); }, 600);
+    const placesSearch = _.debounce(term => { this.googlePlacesSearch(term); }, 350);
 
     return (
       <div className="container container-fluid row col-md-12">
@@ -55,5 +55,4 @@ const mapDispatchToProps = dispatch => ({
 
 
 export const app = App;
-export default connect(mapStateProps, mapDispatchToProps)(App);
-
+export default connect(mapStateToProps, mapDispatchToProps)(App);
