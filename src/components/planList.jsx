@@ -7,7 +7,13 @@ import { toLocalTime } from '../app/timeValidator';
 
 const PlanList = props => {
   if(props.plans.length === 0) {
-    return <div>Loading... </div>;
+    return (
+      <div className="plan-list col-md-6">
+        <div className="plan-box">
+          <p>No plan to eat!</p>
+        </div>
+      </div>
+    );
   }
 
   const plans = props.plans.map((plan, index) => {
@@ -39,9 +45,6 @@ PlanList.propTypes = {
 };
 
 
-const mapStateProps = state => ({
-  plans: state.planList.plans
-});
 
 export const PlanListComponent = PlanList;
-export default connect(mapStateProps)(PlanList);
+export default PlanList;

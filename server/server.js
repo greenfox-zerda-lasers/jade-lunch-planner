@@ -2,15 +2,13 @@ const path = require('path');
 const express = require('express');
 const pg = require('pg-promise')();
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
+
+const apis = require('../src/services/apis.js');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../dist')));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 
 const port = process.env.PORT || 3000;
 const localDb = 'postgres://jade@127.0.0.1:5432/lunch_planner';
@@ -67,7 +65,8 @@ app.put('/api/plans/:plan_id', (req, res) => {
 app.delete('/api/plans/:plan_id', (req, res) => {
   const query =
     `DELETE FROM plans
-    WHERE plan_id = ${req.params.plan_id}`;
+    WHERE plan_id = ${req.params.plan_id}
+    RETURNING *`;
   db.one(query)
     .then(() => {
       res.json({ status: 200 });
@@ -75,6 +74,21 @@ app.delete('/api/plans/:plan_id', (req, res) => {
       res.status(500).json({ error: error.message });
     });
 });
+
+
+// googleSearch
+app.get('/api/google/:place', (req, res) => {
+  const API_KEY = apis.GOOGLE_PLACES_API_KEY;
+  const query = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.507462,19.0640058&radius=800&type=restaurant&keyword=${req.params.place}&key=${API_KEY}`;
+  fetch(query)
+    .then(response => {
+      return response.json();
+    }).then(places => {
+      res.json(places);
+    }).catch(error => {
+      console.log(error);
+    });
+  });
 
 
 app.listen(port, () => {

@@ -1,7 +1,9 @@
 const path = require('path');
+const fetch = require('whatwg-fetch');
+
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src') + '/index.jsx',
+  entry: ['whatwg-fetch', path.resolve(__dirname, 'src') + '/index.jsx'],
   resolve: {
     extensions: ['', '.js', '.jsx'],
     },
