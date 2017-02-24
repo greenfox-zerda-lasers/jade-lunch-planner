@@ -10,19 +10,29 @@ describe('Plan', () => {
 });
 
   it('should give state after update plan', () => {
-	const state = {};
+	const state = {
+    loading: false,
+    plans: [
+      { plan_id: 1,
+        time: "12:00",
+        place: "Ordo Tatai Sass",
+        timezone_offset: -60
+      }]
+    };
 
 	const action = {
 		type: "UPDATE_PLAN",
     payload: {
-      time: "12:00",
-      place: "Ordo Tatai Sass",
+      event: {
+        time: "11:00",
+      },
+      listKey: 0,
     }
 	};
 
 	const nextState = plan(state, action);
 
-	expect(nextState).toEqual({loading: false, time: "12:00", place: "Ordo Tatai Sass"});
+	expect(nextState).toEqual({loading: false, plans: [{plan_id: 1, time: "11:00", place: "Ordo Tatai Sass", timezone_offset: -60}]});
 });
 
   it("should give state after request plan, +loading true", () => {
@@ -38,19 +48,32 @@ describe('Plan', () => {
 });
 
   it("should give updated state with payload after REQUEST_PLAN_SUCCESS and loading false", () => {
-  const state = {};
+  const state = {
+    loading: false,
+    plans: [{
+      time: "12:00",
+      place: "Ordo ndr",
+      plan_id: 1,
+      timezone_offset: -60
+      }]
+  };
 
   const action = {
     type: "REQUEST_PLAN_SUCCESS",
-    payload: {
-      time: "10:00",
-      place: "Ordo Hydra",
+    payload:
+    {
+      plans: [{
+        time: "12:00",
+        place: "Ordo ndr",
+        plan_id: 1,
+        timezone_offset: -60
+      }]
     }
   };
 
   const nextState = plan(state, action);
 
-  expect(nextState).toEqual({loading: false, time:"10:00", place:"Ordo Hydra"});
+  expect(nextState).toEqual({loading: false, plans: [{plan_id: 1, time: "12:00", place: "Ordo ndr", timezone_offset: -60}]});
   });
 
   it("should give state after REQUEST_PLAN_FAILURE", () => {
